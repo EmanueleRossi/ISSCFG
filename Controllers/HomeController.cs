@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ISSCFG.Models;
+using System.Net;
 
 namespace ISSCFG.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+        private string step01ChoosenValue;        
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -23,10 +26,16 @@ namespace ISSCFG.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Step01()
         {
-            return View();
-        }
+            step01ChoosenValue += "b";
+
+            return new ContentResult {
+                ContentType = "text/html",
+                StatusCode = (int)HttpStatusCode.OK,
+                Content = "<html><body>Sei a step #01! <br> Valore scelto:" + step01ChoosenValue + "</body></html>"
+            };
+        }        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
