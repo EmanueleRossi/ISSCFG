@@ -3,23 +3,5 @@
 }
 
 <div class="container">
-    <div class="card-deck mb-3 text-center">
-    <div class="card mb-2 box-shadow">
-        <div class="card-header">
-            <i class="fas fa-5x fa-laptop"></i>
-        </div>
-        <div class="card-body">
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Computer Extension</button>
-        </div>
-    </div>
-    <div class="card mb-2 box-shadow">
-        <div class="card-header">
-            <i class="fab fa-5x fa-intercom"></i>
-        </div>
-        <div class="card-body">            
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Step01">
-                <button type="button" class="btn btn-lg btn-block btn-primary">Standalone Meeting Room</button>
-            </a>
-        </div>
-    </div>
+    <a asp-controller="Cfg" asp-action="Index"><h2>Meeting Room Configurator</h2></a>
 </div>
