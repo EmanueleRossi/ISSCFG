@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using ISSCFG.Models.Services;
 using ISSCFG.Models.ViewModels;
 
@@ -5,20 +7,43 @@ namespace ISSCFG
 {
     public class CfgService : ICfgService
     {
-        private CfgViewModel viewModel;
+        private List<CfgViewModel> viewModelList;
         public CfgService() 
         {
-            viewModel  = new CfgViewModel();
+            viewModelList = new List<CfgViewModel>();
         }
 
-        public CfgViewModel getCfg()
+        public CfgViewModel getCfg(Guid guid)
         {
-            return viewModel;
+            if (viewModelList.FindIndex(vm => vm.guid == guid) == 0)
+            {
+                return viewModelList.FindLast(vm => vm.guid == guid);
+            }
+            else
+            {
+                CfgViewModel vm = new CfgViewModel();
+                vm.guid = Guid.NewGuid();
+                viewModelList.Add(vm);
+                return vm;
+            }
         }
-
-        public void setStep01(string step01) 
+        public Guid setStep01(string step01, Guid guid) 
         {
-            viewModel.step01 = "PIPPO";
+            var vm = this.getCfg(guid);
+            vm.step01 = step01;
+            return vm.guid;
         }
+        public Guid setStep02(string step02, Guid guid) 
+        {
+            var vm = this.getCfg(guid);
+            vm.step02 = step02;
+            return vm.guid;
+        }        
+        public Guid setStep03(string step03, Guid guid) 
+        {
+            var vm = this.getCfg(guid);
+            vm.step03 = step03;
+            return vm.guid;            
+        }             
     }
 }

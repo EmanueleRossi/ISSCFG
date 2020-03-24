@@ -25,7 +25,7 @@ namespace ISSCFG
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<ICfgService, CfgService>();
+            services.AddSingleton<ICfgService, CfgService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)

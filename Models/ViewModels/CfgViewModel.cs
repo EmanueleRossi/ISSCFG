@@ -6,5 +6,7 @@ namespace ISSCFG.Models.ViewModels
     {
         public Guid guid { get; set; }
         public string step01 { get; set; }
+        public string step02 { get; set; }
+        public string step03 { get; set; }                
     }
 }

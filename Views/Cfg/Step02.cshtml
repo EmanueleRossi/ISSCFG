@@ -1,9 +1,32 @@
-﻿@Model CfgViewModel
+﻿@model ISSCFG.Models.ViewModels.CfgViewModel
 
 @{
     ViewData["Title"] = "Step 02";
 }
 
 <div class="container">
-    <pre>@Model.step01</pre>
+    <h2 class="question">Vuoi utilizzare lo schermo della Meeting Room solo come Display od anche come lavagna multimediale?</h2>
+    <div class="card-deck mb-3 text-center">
+    <div class="card mb-2 box-shadow">
+        <div class="card-header">
+            <i class="fas fa-5x fa-tv"></i>
+        </div>
+        <div class="card-body">
+            Lo schermo della meeting room deve visualizzare i contenuti del meeting.
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="Step02" asp-route-step02="a" asp-route-guid="@Model.guid">            
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Display</button>
+            </a>
+        </div>
+    </div>
+    <div class="card mb-2 box-shadow">
+        <div class="card-header">
+            <i class="fas fa-5x fa-chalkboard-teacher"></i>
+        </div>
+        <div class="card-body">            
+            Lo schermo della Meeting Room deve visualizzare i contenuti del meeting ma anche consentire di scrivere, disegnare...
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="Step02" asp-route-step02="b" asp-route-guid="@Model.guid">
+                <button type="button" class="btn btn-lg btn-block btn-primary">Lavagna Multimediale</button>
+            </a>
+        </div>
+    </div>
 </div>

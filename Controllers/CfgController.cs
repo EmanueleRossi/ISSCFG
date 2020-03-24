@@ -28,12 +28,18 @@ namespace ISSCFG.Controllers
             return View("Step01");
         }
 
-        public IActionResult Step01(string step01)
+        public IActionResult Step01(string step01, Guid guid)
         {
-            _cfgService.setStep01(step01);
-            CfgViewModel viewModel = _cfgService.getCfg();            
+            guid = _cfgService.setStep01(step01, guid);
+            CfgViewModel viewModel = _cfgService.getCfg(guid);            
             return View("Step02", viewModel);
         }        
+        public IActionResult Step02(string step02, Guid guid)
+        {
+            guid = _cfgService.setStep02(step02, guid);
+            CfgViewModel viewModel = _cfgService.getCfg(guid);            
+            return View("Step03", viewModel);
+        }           
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
