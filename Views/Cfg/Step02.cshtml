@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             Lo schermo della meeting room deve visualizzare i contenuti del meeting.
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="Step02" asp-route-step02="a" asp-route-guid="@Model.guid">            
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep02" asp-route-step02="a" asp-route-guid="@Model.guid">            
                 <button type="button" class="btn btn-lg btn-block btn-outline-primary">Display</button>
             </a>
         </div>
@@ -24,9 +24,14 @@
         </div>
         <div class="card-body">            
             Lo schermo della Meeting Room deve visualizzare i contenuti del meeting ma anche consentire di scrivere, disegnare...
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="Step02" asp-route-step02="b" asp-route-guid="@Model.guid">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep02" asp-route-step02="b" asp-route-guid="@Model.guid">
                 <button type="button" class="btn btn-lg btn-block btn-primary">Lavagna Multimediale</button>
             </a>
         </div>
     </div>
+</div>
+<div class="container">    
+    <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="ToStep01" asp-route-guid="@Model.guid">
+        <button type="button" class="btn btn-sm btn-primary">< Indietro</button>
+    </a>
 </div>

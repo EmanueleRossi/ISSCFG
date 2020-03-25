@@ -44,6 +44,15 @@ namespace ISSCFG
             var vm = this.getCfg(guid);
             vm.step03 = step03;
             return vm.guid;            
-        }             
+        }  
+        public Guid setContacts(string name, string company, string mail, string phone, Guid guid) 
+        {
+            var vm = this.getCfg(guid);
+            vm.name = name;
+            vm.company = company;
+            vm.mail = mail;
+            vm.phone = phone; 
+            return vm.guid;              
+        } 
     }
 }

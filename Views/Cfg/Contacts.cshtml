@@ -1,0 +1,35 @@
+﻿@model ISSCFG.Models.ViewModels.CfgViewModel
+
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+<div class="container">
+    <h2 class="question">Ci daresti le informazioni per contattarti?</h2>
+    <form asp-controller="Cfg" asp-action="CompleteContacts" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
+        <div class="form-group row">
+            <label for="name">Nominativo</label>                
+            <input asp-for="@Model.name" type="text" class="form-control form-control-sm" id="name" placeholder="Nominativo"/> 
+        </div>
+        <div class="form-group row">
+            <label for="name">Azienda</label>                
+            <input asp-for="@Model.company" type="text" class="form-control form-control-sm" id="company" placeholder="Azienda"/> 
+        </div>
+        <div class="form-group row">
+            <label for="mail">Mail</label>                
+            <input asp-for="@Model.mail" type="email" class="form-control form-control-sm" id="mail" aria-describedby="mailHelp" placeholder="nome@azienda.it"/> 
+            <small id="mailHelp" class="form-text text-muted">Sarà usato per contattarti in questa occasione e non sarà mai condiviso con nessuno.</small>         
+        </div>
+        <div class="form-group row">
+            <label for="phone">Telefono</label>                
+            <input asp-for="@Model.phone" type="tel" class="form-control form-control-sm" id="phone" aria-describedby="phoneHelp" placeholder="+39 (347) 1234567"/> 
+            <small id="mailHelp" class="form-text text-muted">Sarà usato, se necessario, dopo lo scambio di mail e non sarà mai condiviso con nessuno.</small>         
+        </div>
+        <button type="submit" class="btn btn-primary">Invia</button>
+    </form>
+</div>
+<div class="container">       
+    <a class="nav-link text-dark" asp-controller="Cfg" asp-action="ToStep03" asp-route-guid="@Model.guid">
+        <button type="button" class="btn btn-sm btn-primary">< Indietro</button>
+    </a>      
+</div>
