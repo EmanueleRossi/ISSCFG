@@ -6,7 +6,7 @@
 
 <div class="container">
     <h2 class="question">Ci daresti le informazioni per contattarti?</h2>
-    <form asp-controller="Cfg" asp-action="CompleteContacts" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
+    <form asp-controller="Cfg" asp-action="CompleteContacts" asp-route-returnurl="@ViewData["ReturnUrl"]" asp-route-guid="@Model.guid" method="post" class="form-horizontal" role="form">
         <div class="form-group row">
             <label for="name">Nominativo</label>                
             <input asp-for="@Model.name" type="text" class="form-control form-control-sm" id="name" placeholder="Nominativo"/> 
