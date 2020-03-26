@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ISSCFG.Models.Services;
+using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace ISSCFG
         {            
             services.AddControllersWithViews();
             services.AddSingleton<ICfgService, CfgService>();
+            services.AddSingleton<IProductService, ProductService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILogger<Startup> logger)
