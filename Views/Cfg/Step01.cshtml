@@ -6,7 +6,9 @@
 }
 
 <div class="container">
-    <h2 class="question">Come verrà utilizzata la meeting room?</h2>
+    <div class="container">
+        <h2 class="question">Come verrà utilizzata la meeting room?</h2>
+    </div>
     <div class="card-deck mb-3 text-center">
     <div class="card mb-2 box-shadow">
         <div class="card-header">
@@ -14,7 +16,7 @@
         </div>
         <div class="card-body">
             Uno dei partecipanti utilizza il proprio computer per il meeting e condividendo audio e video di alta qualità con i partecipanti.
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep01" asp-route-step01="@Step01.ComputerExtension">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep01" asp-route-step01="@Step01.ComputerExtension" asp-route-guid="@Model.guid">
                 <button type="button" class="btn btn-lg btn-block btn-outline-primary">Computer Extension</button> 
             </a>
         </div>
@@ -25,7 +27,7 @@
         </div>
         <div class="card-body">            
             Dalla meeting room deve essere possibile partecipare al meeting senza utilizzare il computer di uno dei partecipanti.
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep01" asp-route-step01="@Step01.StandaloneMeetingRoom">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep01" asp-route-step01="@Step01.StandaloneMeetingRoom" asp-route-guid="@Model.guid">
                 <button type="button" class="btn btn-lg btn-block btn-primary">Standalone Meeting Room</button>
             </a>
         </div>

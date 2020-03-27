@@ -37,16 +37,7 @@ namespace ISSCFG.Models.ViewModels
         
         public override string ToString()
         {
-            return $@"CfgViewModel: 
-                guid=|{guid}| 
-                step01=|{step01}| 
-                step02=|{step02}| 
-                step03=|{step03}| 
-                name=|{name} 
-                company=|{company} 
-                mail=|{mail}| 
-                phone=|{phone}|
-                products.Count = |{products.Count}|";
+            return $"guid=|{guid}|, step01=|{step01}|, step02=|{step02}|, step03=|{step03}|, name=|{name}, company=|{company}, mail=|{mail}|, phone=|{phone}|, products.Count = |{products.Count}|";
         }
     }
 }

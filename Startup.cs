@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
+
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using ISSCFG.Models.Services;
+using ISSCFG.Models.Services.Application;
 using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +27,7 @@ namespace ISSCFG
             services.AddControllersWithViews();
             services.AddSingleton<ICfgService, CfgService>();
             services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IConfigurator, Configurator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILogger<Startup> logger)

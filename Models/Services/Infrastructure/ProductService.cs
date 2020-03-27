@@ -32,6 +32,38 @@ namespace ISSCFG.Models.Services.Infrastructure
             p03.imagePath = "img/Products/CX-20.png";
             products.Add(p03);
 
+            Item p04 = new Item();
+            p04.producer = "SAMSUNG";
+            p04.code = "WM65R";
+            p04.description = "Flip 2 - SMART Signage";
+            p04.url = "https://www.samsung.com/it/samsung-flip/";
+            p04.imagePath = "img/Products/FLIP2_65.jpg";
+            products.Add(p04);   
+
+            Item p05 = new Item();
+            p05.producer = "BARCO";
+            p05.code = "VCEM";
+            p05.description = "VC Studio Expansion Microphone";
+            p05.url = "";
+            p05.imagePath = "";
+            products.Add(p05);      
+
+            Item p06 = new Item();
+            p06.producer = "POLY";
+            p06.code = "STUDIO-X30";
+            p06.description = "Poly Studio X30";
+            p06.url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x30-data-sheet-enus.pdf";
+            p06.imagePath = "img/Products/STUDIO-X30.jpg";
+            products.Add(p06);                             
+
+            Item p07 = new Item();
+            p07.producer = "POLY";
+            p07.code = "STUDIO-X50";
+            p07.description = "Poly Studio X50";
+            p07.url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x50-data-sheet-enus.pdf";
+            p07.imagePath = "img/Products/STUDIO-X50.jpg";
+            products.Add(p07);  
+
             return products.FindLast(p => p.code.Equals(code));
         }
     }

@@ -12,7 +12,6 @@ namespace ISSCFG
         {
             viewModelList = new List<CfgViewModel>();
         }
-
         public CfgViewModel getCfg(Guid guid)
         {
             if (viewModelList.FindIndex(vm => vm.guid == guid) == 0)
@@ -28,31 +27,27 @@ namespace ISSCFG
             }
         }
         public Guid setStep01(string step01, Guid guid) 
-        {
-            var vm = this.getCfg(guid);
-            vm.step01 = step01;
-            return vm.guid;
+        {                    
+            this.getCfg(guid).step01 = step01;
+            return guid;
         }
         public Guid setStep02(string step02, Guid guid) 
         {
-            var vm = this.getCfg(guid);
-            vm.step02 = step02;
-            return vm.guid;
+            this.getCfg(guid).step02 = step02;
+            return guid;
         }        
         public Guid setStep03(string step03, Guid guid) 
         {
-            var vm = this.getCfg(guid);
-            vm.step03 = step03;
-            return vm.guid;            
+            this.getCfg(guid).step03 = step03;
+            return guid;            
         }  
         public Guid setContacts(string name, string company, string mail, string phone, Guid guid) 
         {
-            var vm = this.getCfg(guid);
-            vm.name = name;
-            vm.company = company;
-            vm.mail = mail;
-            vm.phone = phone; 
-            return vm.guid;              
+            this.getCfg(guid).name = name;
+            this.getCfg(guid).company = company;
+            this.getCfg(guid).mail = mail;
+            this.getCfg(guid).phone = phone;
+            return guid;              
         } 
     }
 }
