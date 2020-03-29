@@ -7,4 +7,5 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=build /ISSCFG/out ./
 EXPOSE 5000/tcp
+ENV ASPNETCORE_URLS http://*:5000
 ENTRYPOINT ["dotnet", "ISSCFG.dll"]
