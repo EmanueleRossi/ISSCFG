@@ -5,5 +5,5 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=build /app/ISSCFG/out ./
+COPY --from=build /ISSCFG/out ./
 ENTRYPOINT ["dotnet", "ISSCFG.dll"]
