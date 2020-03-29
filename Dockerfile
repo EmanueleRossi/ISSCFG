@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
-COPY *.csproj ./
+RUN git clone https://github.com/EmanueleRossi/ISSCFG.git
 RUN dotnet restore
 COPY . ./
 WORKDIR /app
