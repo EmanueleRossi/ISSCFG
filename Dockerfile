@@ -4,6 +4,5 @@ WORKDIR /ISSCFG
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 WORKDIR /ISSCFG/out
-EXPOSE 5000/tcp
 ENV ASPNETCORE_URLS http://*:$PORT
 ENTRYPOINT ["dotnet", "ISSCFG.dll", "--environment", "Production", "--port", "$PORT"]
