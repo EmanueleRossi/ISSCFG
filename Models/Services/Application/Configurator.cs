@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using ISSCFG.Models.Enums;
 using ISSCFG.Models.Services.Infrastructure;
 using ISSCFG.Models.ViewModels;
 using Microsoft.Extensions.Logging;
@@ -9,17 +11,17 @@ namespace ISSCFG.Models.Services.Application
     public class Configurator : IConfigurator
     {
         private readonly ILogger<Configurator> _logger; 
-        private readonly IProductService _productService;        
+        private readonly IItemService _ItemService;        
 
-        public Configurator(ILogger<Configurator> logger, IProductService productService)
+        public Configurator(ILogger<Configurator> logger, IItemService ItemService)
         {
             _logger = logger;
-            _productService = productService;
+            _ItemService = ItemService;
         }
         
-        public List<Product> ComputeConfiguration(CfgViewModel userInput) 
+        public async Task<List<ItemViewModel>> ComputeConfiguration(UserInputViewModel userInput) 
         {
-            List<Product> basket = new List<Product>();
+            List<ItemViewModel> basket = new List<ItemViewModel>();
             if (userInput == null || userInput.guid == null)
             {
                 _logger.LogTrace($"Request for configuration with null input parameters... why?");
@@ -31,10 +33,10 @@ namespace ISSCFG.Models.Services.Application
                     switch (step01userInput)
                     {
                         case Step01.ComputerExtension:
-                            basket.Add(_productService.GetProduct("STUDIO"));
+                            basket.Add(await _ItemService.GetItemAsync("STUDIO"));
                             break;
                         case Step01.StandaloneMeetingRoom:
-                            basket.Add(_productService.GetProduct("STUDIO-X30"));
+                            basket.Add(await _ItemService.GetItemAsync("STUDIO-X30"));
                             break; 
                         default:
                             throw new NotImplementedException($"User Input in Step01 enum, but not managed in compute method!"); 
@@ -49,10 +51,10 @@ namespace ISSCFG.Models.Services.Application
                     switch (step02userInput)
                     {
                         case Step02.Display:
-                            basket.Add(_productService.GetProduct("QM55R"));
+                            basket.Add(await _ItemService.GetItemAsync("QM55R"));
                             break;
                         case Step02.DigitalBlackBoard:
-                            basket.Add(_productService.GetProduct("WM65R"));
+                            basket.Add(await _ItemService.GetItemAsync("WM65R"));
                             break; 
                         default:
                             throw new NotImplementedException($"User Input in Step02 enum, but not managed in compute method!"); 
@@ -67,7 +69,7 @@ namespace ISSCFG.Models.Services.Application
                     switch (step03userInput)
                     {
                         case Step03.Large:
-                            basket.Add(_productService.GetProduct("VCEM"));
+                            basket.Add(await _ItemService.GetItemAsync("VCEM"));
                             break;
                         case Step03.Medium:
                             break; 

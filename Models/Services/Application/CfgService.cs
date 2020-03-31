@@ -7,12 +7,12 @@ namespace ISSCFG
 {
     public class CfgService : ICfgService
     {
-        private List<CfgViewModel> viewModelList;
+        private List<UserInputViewModel> viewModelList;
         public CfgService() 
         {
-            viewModelList = new List<CfgViewModel>();
+            viewModelList = new List<UserInputViewModel>();
         }
-        public CfgViewModel getCfg(Guid guid)
+        public UserInputViewModel getCfg(Guid guid)
         {
             if (viewModelList.FindIndex(vm => vm.guid == guid) == 0)
             {
@@ -20,7 +20,7 @@ namespace ISSCFG
             }
             else
             {
-                CfgViewModel vm = new CfgViewModel();
+                UserInputViewModel vm = new UserInputViewModel();
                 vm.guid = Guid.NewGuid();
                 viewModelList.Add(vm);
                 return vm;

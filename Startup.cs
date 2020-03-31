@@ -6,6 +6,7 @@ using ISSCFG.Models.Services.Application;
 using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,9 +26,11 @@ namespace ISSCFG
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllersWithViews();
-            services.AddSingleton<ICfgService, CfgService>();
-            services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IConfigurator, Configurator>();
+            services.AddTransient<ICfgService, CfgService>();
+            services.AddTransient<IItemService, EfItemService>();
+            services.AddTransient<IConfigurator, Configurator>();
+
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("AppConnectionString")));         
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILogger<Startup> logger)
@@ -45,7 +48,7 @@ namespace ISSCFG
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for Itemion scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
