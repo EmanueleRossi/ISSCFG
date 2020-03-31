@@ -1,21 +1,21 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ISSCFG.Models.Services.Infrastructure
 {
     public class AppDbContext : DbContext
     {
-        private DbContextOptions<AppDbContext> _contextOptions;
+        private DbContextOptions<AppDbContext> _options;
 
-        public AppDbContext(DbContextOptions<AppDbContext> contextOptions)    
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)    
         {            
-            _contextOptions = contextOptions;
+            _options = options;
         }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {        
-            optionsBuilder.UseNpgsql(@"Host=34.77.109.48;Database=isscfg;Username=isscfg_usr;Password=jw8s0F4ò;");
-        }        
+            //optionsBuilder.UseNpgsql();
+            base.OnConfiguring(optionsBuilder);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
