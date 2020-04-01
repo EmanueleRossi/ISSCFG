@@ -1,5 +1,3 @@
-using System;
-
 namespace ISSCFG.Models
 {
     public class ErrorViewModel

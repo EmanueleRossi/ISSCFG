@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using ISSCFG.Models.Entities;
 
 namespace ISSCFG.Models.ViewModels

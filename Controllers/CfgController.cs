@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -27,12 +26,9 @@ namespace ISSCFG.Controllers
                 
         public IActionResult ToStep01(int id)
         {   
-            Logger.LogDebug($"Received [id] |{id}|");                 
-            if (id == 0) 
-            {
-                id = UserInputService.newUserInput();
-            }
-            Logger.LogDebug($"ToStep01 [id] |{id}|");                 
+            Logger.LogDebug($"Received [id]=|{id}|");                 
+            if (id == 0) id = UserInputService.newUserInput();
+            Logger.LogDebug($"ToStep01 [id]=|{id}|");                 
             return View("Step01", UserInputService.GetUserInput(id));
         }
         public IActionResult CompleteStep01(string step01, int id)
@@ -44,7 +40,7 @@ namespace ISSCFG.Controllers
         
         public IActionResult ToStep02(int id)
         {
-            Logger.LogDebug($"ToStep02 [id] |{id}|");                 
+            Logger.LogDebug($"ToStep02 [id]=|{id}|");                 
             return View("Step02", UserInputService.GetUserInput(id));
         }                
         public IActionResult CompleteStep02(string step02, int id)
@@ -56,7 +52,7 @@ namespace ISSCFG.Controllers
         
         public IActionResult ToStep03(int id)
         {
-            Logger.LogDebug($"ToStep03 [id] |{id}|");                 
+            Logger.LogDebug($"ToStep03 [id]=|{id}|");                 
             return View("Step03", UserInputService.GetUserInput(id));
         }        
         public IActionResult CompleteStep03(string step03, int id)
@@ -70,9 +66,9 @@ namespace ISSCFG.Controllers
         {
             UserInputService.setContacts(name, company, mail, phone, id);
             UserInputViewModel viewModel = UserInputService.GetUserInput(id); 
-            Logger.LogDebug($"[CompleteContacts] |{viewModel.ToString()}|");                 
+            Logger.LogDebug($"[CompleteContacts] viewModel=|{viewModel.ToString()}|");                 
             List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
-            Logger.LogDebug($"[Configuration]: |{string.Join("\n", configuration.Select(p => p.ToString()))}|");          
+            Logger.LogDebug($"[Configuration]=|{string.Join("\n", configuration.Select(p => p.ToString()))}|");          
             return RedirectToAction("ToStep01", "Cfg");
         } 
         

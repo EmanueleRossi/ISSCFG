@@ -13,10 +13,7 @@ namespace ISSCFG.Models
 
         public Item(string code)
         {
-            if (string.IsNullOrWhiteSpace(code))
-            {
-                throw new ArgumentException("Item must have a code!");
-            }
+            if (string.IsNullOrWhiteSpace(code)) throw new ArgumentException("Item must have a code!");
             this.Code = code;
         }
 

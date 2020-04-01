@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace ISSCFG.Models.ViewModels
 {
     public class ItemViewModel

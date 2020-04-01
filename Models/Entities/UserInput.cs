@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace ISSCFG.Models.Entities
 {
     public class UserInput

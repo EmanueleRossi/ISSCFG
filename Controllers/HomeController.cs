@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ISSCFG.Models;
-using System.Net;
-using ISSCFG.Models.Services;
-using ISSCFG.Models.ViewModels;
 
 namespace ISSCFG.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;  
+        private readonly ILogger<HomeController> Logger;  
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
+            Logger = logger;
         }
 
         public IActionResult Index()

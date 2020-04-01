@@ -1,26 +1,32 @@
 using System;
 using ISSCFG.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace ISSCFG.Models.Services.Infrastructure
 {
     public class AppDbContext : DbContext
     {
-        private DbContextOptions<AppDbContext> _options;
+        private DbContextOptions<AppDbContext> Options;
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)    
         {            
-            _options = options; 
+            Options = options; 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {        
-            var extension = _options.FindExtension<NpgsqlOptionsExtension>();
+            var extension = Options.FindExtension<NpgsqlOptionsExtension>();
             if (extension != null) {
                 optionsBuilder.UseNpgsql(extension.ConnectionString);                
             } else {
-                throw new ArgumentException("This DB Context supports only Postgres, using Npgsql.EntityFrameworkCore.PostgreSQL NUGET package!");
+                string extensionString = "{";
+                foreach (var e in Options.Extensions)
+                    extensionString += e.GetType() + "},";
+                extensionString += "}";
+                throw new ArgumentException($@"
+                    In Microsoft.EntityFrameworkCore.DbContextOptionsBuilder can't find 
+                    Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.NpgsqlOptionsExtension extension
+                    Available extensions are: {extensionString} NpgsqlOptionsExtension");     
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
