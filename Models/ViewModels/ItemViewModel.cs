@@ -21,5 +21,10 @@ namespace ISSCFG.Models.ViewModels
             ImagePath = item.ImagePath,
             Url = item.Url
         };
+
+        public override string ToString()
+        {
+            return $"id=|{Id}|, code=|{Code}|, producer=|{Producer}|, description=|{Description}|, imagePath=|{ImagePath}|, url=|{Url}|";
+        }          
     }
 }

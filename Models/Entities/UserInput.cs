@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ISSCFG.Models.Entities;
 
-namespace ISSCFG.Models.ViewModels
+namespace ISSCFG.Models.Entities
 {
-    public class UserInputViewModel
+    public class UserInput
     {
         public int Id { get; set; }
         public string Step01 { get; set; }
@@ -14,17 +13,6 @@ namespace ISSCFG.Models.ViewModels
         public string Company { get; set; }
         public string Mail { get; set; }
         public string Phone { get; set; }
-
-        public static UserInputViewModel FromEntity(UserInput input) => new UserInputViewModel
-        {
-            Id = input.Id,
-            Step01 = input.Step01,
-            Step02 = input.Step02,
-            Step03 = input.Step03,
-            Name = input.Name,
-            Company = input.Company,
-            Phone = input.Phone
-        };        
         
         public override string ToString()
         {

@@ -26,9 +26,9 @@ namespace ISSCFG
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllersWithViews();
-            services.AddTransient<ICfgService, CfgService>();
-            services.AddTransient<IItemService, EfItemService>();
-            services.AddTransient<IConfigurator, Configurator>();
+            services.AddTransient<IUserInputService, UserInputService>();
+            services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IConfigurator, MeetingRoomConfigurator>();
 
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("AppConnectionString")));         
         }

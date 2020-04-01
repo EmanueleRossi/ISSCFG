@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ISSCFG.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MI00 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,25 @@ namespace ISSCFG.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserInputs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Step01 = table.Column<string>(nullable: true),
+                    Step02 = table.Column<string>(nullable: true),
+                    Step03 = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Company = table.Column<string>(nullable: true),
+                    Mail = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserInputs", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -43,6 +62,9 @@ namespace ISSCFG.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Items");
+
+            migrationBuilder.DropTable(
+                name: "UserInputs");
         }
     }
 }

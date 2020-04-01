@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ISSCFG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200401103435_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200401161053_MI00")]
+    partial class MI00
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,39 @@ namespace ISSCFG.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("ISSCFG.Models.Entities.UserInput", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Mail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Step01")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Step02")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Step03")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserInputs");
+                });
 
             modelBuilder.Entity("ISSCFG.Models.Item", b =>
                 {

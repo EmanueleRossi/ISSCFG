@@ -5,11 +5,11 @@ using ISSCFG.Models.ViewModels;
 
 namespace ISSCFG.Models.Services.Infrastructure
 {
-    public class EfItemService : IItemService
+    public class ItemService : IItemService
     {
         private readonly AppDbContext dbContext;
 
-        public EfItemService(AppDbContext dbContext)
+        public ItemService(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

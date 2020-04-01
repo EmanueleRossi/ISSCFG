@@ -1,4 +1,5 @@
 using System;
+using ISSCFG.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
@@ -81,8 +82,16 @@ namespace ISSCFG.Models.Services.Infrastructure
                     Url = ""
                 });
             });
+
+            modelBuilder.Entity<UserInput>(entity =>
+            {            
+                entity.ToTable("UserInputs");
+                entity.HasKey(input => input.Id);
+                entity.Property(input => input.Id).ValueGeneratedOnAdd();            
+            });
         }        
     
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<UserInput> UserInputs { get; set; }        
     }
 }

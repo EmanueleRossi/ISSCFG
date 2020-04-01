@@ -14,66 +14,66 @@ namespace ISSCFG.Controllers
 {
     public class CfgController : Controller
     {
-        private readonly ILogger<HomeController> _logger;  
-        private readonly ICfgService _cfgService;
-        private readonly IConfigurator _configurator;
+        private readonly ILogger<HomeController> Logger;  
+        private readonly IUserInputService UserInputService;
+        private readonly IConfigurator Configurator;
 
-        public CfgController(ILogger<HomeController> logger, ICfgService cfgService, IConfigurator configurator)
+        public CfgController(ILogger<HomeController> logger, IUserInputService userInputService, IConfigurator configurator)
         {
-            _logger = logger;
-            _cfgService = cfgService;
-            _configurator = configurator;
+            Logger = logger;
+            UserInputService = userInputService;
+            Configurator = configurator;
         }
                 
-        public IActionResult ToStep01(Guid guid)
-        {
-            UserInputViewModel viewModel = _cfgService.getCfg(guid);            
-            return View("Step01", viewModel);
+        public IActionResult ToStep01(int id)
+        {   
+            Logger.LogDebug($"Received [id] |{id}|");                 
+            if (id == 0) 
+            {
+                id = UserInputService.newUserInput();
+            }
+            Logger.LogDebug($"ToStep01 [id] |{id}|");                 
+            return View("Step01", UserInputService.GetUserInput(id));
         }
-        public IActionResult CompleteStep01(string step01, Guid guid)
+        public IActionResult CompleteStep01(string step01, int id)
         {
-            _cfgService.setStep01(step01, guid);
-            UserInputViewModel viewModel = _cfgService.getCfg(guid);            
-            _logger.LogDebug($"[CompleteStep01] Contacts: |{viewModel.ToString()}|");           
-            return View("Step02", viewModel);
+            UserInputService.setStep01(step01, id);
+            Logger.LogDebug($"[id=|{id}|] -> step01=|{step01}|");           
+            return View("Step02", UserInputService.GetUserInput(id));
         }
         
-        public IActionResult ToStep02(Guid guid)
+        public IActionResult ToStep02(int id)
         {
-            UserInputViewModel viewModel = _cfgService.getCfg(guid);      
-            _logger.LogDebug($"[Step02] Contacts: |{viewModel.ToString()}|");                 
-            return View("Step02", viewModel);
+            Logger.LogDebug($"ToStep02 [id] |{id}|");                 
+            return View("Step02", UserInputService.GetUserInput(id));
         }                
-        public IActionResult CompleteStep02(string step02, Guid guid)
+        public IActionResult CompleteStep02(string step02, int id)
         {
-            _cfgService.setStep02(step02, guid);
-            UserInputViewModel viewModel = _cfgService.getCfg(guid);            
-            _logger.LogDebug($"[CompleteStep02] Contacts: |{viewModel.ToString()}|");           
-            return View("Step03", viewModel);
+            UserInputService.setStep02(step02, id);
+            Logger.LogDebug($"[id=|{id}|] -> step02=|{step02}|");           
+            return View("Step03", UserInputService.GetUserInput(id));
         }        
         
-        public IActionResult ToStep03(Guid guid)
+        public IActionResult ToStep03(int id)
         {
-            UserInputViewModel viewModel = _cfgService.getCfg(guid);
-            _logger.LogDebug($"[ToStep03] Contacts: |{viewModel.ToString()}|");           
-            return View("Step03", viewModel);
+            Logger.LogDebug($"ToStep03 [id] |{id}|");                 
+            return View("Step03", UserInputService.GetUserInput(id));
         }        
-        public IActionResult CompleteStep03(string step03, Guid guid)
+        public IActionResult CompleteStep03(string step03, int id)
         {
-            _cfgService.setStep03(step03, guid);
-            UserInputViewModel viewModel = _cfgService.getCfg(guid);            
-            _logger.LogDebug($"[CompleteStep03] Contacts: |{viewModel.ToString()}|");           
-            return View("Contacts", viewModel);            
+            UserInputService.setStep03(step03, id);
+            Logger.LogDebug($"[id=|{id}|] -> step03=|{step03}|");           
+            return View("Contacts", UserInputService.GetUserInput(id));
         }           
         
-        public async Task<IActionResult> CompleteContacts(string name, string company, string mail, string phone, Guid guid)
+        public async Task<IActionResult> CompleteContacts(string name, string company, string mail, string phone, int id)
         {
-            guid = _cfgService.setContacts(name, company, mail, phone, guid);
-            UserInputViewModel viewModel = _cfgService.getCfg(guid); 
-            _logger.LogDebug($"[CompleteContacts] Contacts: |{viewModel.ToString()}|");                 
-            List<ItemViewModel> configuration = await _configurator.ComputeConfiguration(viewModel);                    
-            _logger.LogDebug($"[Configuration]: |{string.Join("\n", configuration.Select(p => p.ToString()))}|");          
-            return View("Step01", viewModel);
+            UserInputService.setContacts(name, company, mail, phone, id);
+            UserInputViewModel viewModel = UserInputService.GetUserInput(id); 
+            Logger.LogDebug($"[CompleteContacts] |{viewModel.ToString()}|");                 
+            List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
+            Logger.LogDebug($"[Configuration]: |{string.Join("\n", configuration.Select(p => p.ToString()))}|");          
+            return RedirectToAction("ToStep01", "Cfg");
         } 
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

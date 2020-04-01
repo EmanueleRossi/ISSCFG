@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             Le postazioni dei partecipanti, tipicamente in numero di 4 o 5, sono distanti fino a 3,5 metri dal display.
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep03" asp-route-step03="@Step03.Medium" asp-route-guid="@Model.guid">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep03" asp-route-step03="@Step03.Medium" asp-route-id="@Model.Id">
                 <button type="button" class="btn btn-lg btn-block btn-outline-primary">Raccolta</button>
             </a>
         </div>
@@ -25,14 +25,14 @@
         </div>
         <div class="card-body">            
             Le postazioni dei partecipanti, tipicamente in numero di 7 od 8, sono distanti fino a 6 metri dal display.
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep03" asp-route-step03="@Step03.Large" asp-route-guid="@Model.guid">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep03" asp-route-step03="@Step03.Large" asp-route-id="@Model.Id">
                 <button type="button" class="btn btn-lg btn-block btn-primary">Grande</button>
             </a>
         </div>
     </div>
 </div>
 <div class="container">   
-    <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="ToStep02" asp-route-guid="@Model.guid">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="ToStep02" asp-route-id="@Model.Id">
         <button type="button" class="btn btn-sm btn-primary">< Indietro</button>
     </a>    
 </div>

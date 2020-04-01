@@ -4,11 +4,14 @@ Infinity Self Service Configurator
 ## DATABASE
 ### CLI ef tool install...
 <code>dotnet tool install --global dotnet-ef</code>
+
 <code>dotnet add package Microsoft.EntityFrameworkCore.Design</code>
 
 ### Initial DB Creation
 <code>$Env:ASPNETCORE_ENVIRONMENT = "Development"</code>
+
 <code>dotnet ef migrations add InitialCreate</code>
+
 <code>dotnet ef database update -v</code>
 
 ### PostgreSQL PSQL Snippets
@@ -26,6 +29,9 @@ Drop database: <code>drop database isscfg;</code>
 ## DEPLOYMENT
 ### Show
 <code>gcloud container images list</code>
+
+<code>gcloud container images delete</code>
+
 <code>gcloud container images list-tags gcr.io/isscfg/github.com/emanuelerossi/isscfg --format='get(digest,timestamp)'</code>
 
 ### Google Cloud Run Deployment
