@@ -4,12 +4,12 @@ namespace ISSCFG.Models
 {
     public class Item
     {        
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Code { get; private set; }        
-        public string Producer { get; private set; }        
-        public string Description { get; private set; }
-        public string ImagePath { get; private set; }
-        public string Url { get; private set; }      
+        public string Producer { get; set; }        
+        public string Description { get; set; }
+        public string ImagePath { get; set; }
+        public string Url { get; set; }      
 
         public Item(string code)
         {
