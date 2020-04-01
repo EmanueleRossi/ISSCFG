@@ -11,12 +11,6 @@ namespace ISSCFG.Models.Services.Infrastructure
             _options = options;
         }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
-        {        
-            //optionsBuilder.UseNpgsql();
-            base.OnConfiguring(optionsBuilder);
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Item>(entity =>
