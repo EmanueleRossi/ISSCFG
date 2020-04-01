@@ -2,9 +2,12 @@
 Infinity Self Service Configurator
 
 ## DATABASE
-### Initial DB Creation
+### CLI ef tool install...
 <code>dotnet tool install --global dotnet-ef</code>
 <code>dotnet add package Microsoft.EntityFrameworkCore.Design</code>
+
+### Initial DB Creation
+<code>$Env:ASPNETCORE_ENVIRONMENT = "Development"</code>
 <code>dotnet ef migrations add InitialCreate</code>
 <code>dotnet ef database update -v</code>
 

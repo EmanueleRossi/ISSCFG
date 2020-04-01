@@ -35,7 +35,7 @@ namespace ISSCFG
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILogger<Startup> logger)
         {
-            logger.LogInformation($"[ISSCFG] Environment/Profile {env.EnvironmentName}");                 
+            logger.LogInformation($"[ISSCFG] Environment=|{env.EnvironmentName}|");                 
             if (env.IsDevelopment())
             {           
                 app.UseDeveloperExceptionPage();
