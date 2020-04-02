@@ -87,6 +87,13 @@ namespace ISSCFG.Models.Services.Infrastructure
                     ImagePath = "~/img/ACS.jpeg",
                     Url = ""
                 });
+                entity.HasData(new Item("TC8") { 
+                    Id = -8,
+                    Producer = "POLY",
+                    Description = "Poly TC8 Tablet",
+                    ImagePath = "~/img/Products/TC8.jpeg",
+                    Url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/poly-tc8-data-sheet-enus.pdf"
+                });                
             });
 
             modelBuilder.Entity<UserInput>(entity =>

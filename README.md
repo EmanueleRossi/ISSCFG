@@ -5,6 +5,9 @@ Infinity Self Service Configurator
 Log-in to an image
 <code>docker exec -it <container name> /bin/bash</code>
 
+## Cloud SQL Prox
+<code>c:/dev/tools/Google/cloud_sql_proxy_x64.exe -instances=isscfg:europe-west1:isscfg=tcp:5432 -credential_file=c:/dev/tools/Google/isscfg-ff581b9dfb85.json</code>
+
 ## DATABASE
 ### CLI ef tool install...
 <code>dotnet tool install --global dotnet-ef</code>
@@ -14,7 +17,7 @@ Log-in to an image
 ### Initial DB Creation
 <code>$Env:ASPNETCORE_ENVIRONMENT = "Development"</code>
 
-<code>dotnet ef migrations add InitialCreate</code>
+<code>dotnet ef migrations add MI00</code>
 
 <code>dotnet ef database update -v</code>
 

@@ -54,7 +54,8 @@ namespace ISSCFG.Migrations
                     { -4, "STUDIO-X30", "Poly Studio X30", "~/img/Products/STUDIO-X30.jpeg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x30-data-sheet-enus.pdf" },
                     { -5, "STUDIO-X50", "Poly Studio X50", "~/img/Products/STUDIO-X50.jpeg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x50-data-sheet-enus.pdf" },
                     { -6, "CS_CX-20", "ClickShare CX-20", "~/img/Products/CX-20.png", "BARCO", "https://www.barco.com/en/clickshare/wireless-conferencing/cx-20" },
-                    { -7, "VCEM", "VC Studio Expansion Microphone", "~/img/ACS.jpeg", "BARCO", "" }
+                    { -7, "VCEM", "VC Studio Expansion Microphone", "~/img/ACS.jpeg", "BARCO", "" },
+                    { -8, "TC8", "Poly TC8 Tablet", "~/img/Products/TC8.jpeg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/poly-tc8-data-sheet-enus.pdf" }
                 });
         }
 

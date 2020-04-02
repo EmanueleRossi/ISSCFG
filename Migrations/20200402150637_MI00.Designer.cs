@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ISSCFG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200402091932_MI00")]
+    [Migration("20200402150637_MI00")]
     partial class MI00
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,6 +142,15 @@ namespace ISSCFG.Migrations
                             ImagePath = "~/img/ACS.jpeg",
                             Producer = "BARCO",
                             Url = ""
+                        },
+                        new
+                        {
+                            Id = -8,
+                            Code = "TC8",
+                            Description = "Poly TC8 Tablet",
+                            ImagePath = "~/img/Products/TC8.jpeg",
+                            Producer = "POLY",
+                            Url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/poly-tc8-data-sheet-enus.pdf"
                         });
                 });
 #pragma warning restore 612, 618
