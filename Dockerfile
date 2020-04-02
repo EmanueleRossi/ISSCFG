@@ -4,7 +4,9 @@ WORKDIR /ISSCFG
 RUN dotnet restore
 RUN dotnet publish -c Production -o out
 WORKDIR /ISSCFG/out
-EXPOSE 8080 5433 5432
+EXPOSE 8080 22
+RUN useradd -p $(openssl passwd -1 password) erossi
+RUN usermod -aG sudo erossi  
 ENV ASPNETCORE_URLS http://*:8080
 ENV ASPNETCORE_ENVIRONMENT Production
 ENTRYPOINT ["dotnet", "ISSCFG.dll"]

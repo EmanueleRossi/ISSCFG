@@ -1,6 +1,10 @@
 # ISSCFG
 Infinity Self Service Configurator
 
+## DOCKER
+Log-in to an image
+<code>docker exec -it <container name> /bin/bash</code>
+
 ## DATABASE
 ### CLI ef tool install...
 <code>dotnet tool install --global dotnet-ef</code>
