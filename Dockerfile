@@ -7,8 +7,8 @@ WORKDIR /ISSCFG/out
 EXPOSE 8080 22
 RUN useradd -p $(openssl passwd -1 password) erossi
 RUN usermod -aG sudo erossi  
-RUN apt-get update
-RUN apt install openssh-server
+RUN apt-get update -y
+RUN apt install openssh-server -y
 RUN /etc/init.d/ssh start
 ENV ASPNETCORE_URLS http://*:8080
 ENV ASPNETCORE_ENVIRONMENT Production
