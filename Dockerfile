@@ -9,7 +9,7 @@ RUN useradd -p $(openssl passwd -1 password) erossi
 RUN usermod -aG sudo erossi  
 RUN apt-get update -y
 RUN apt install openssh-server -y
-RUN /etc/init.d/ssh start
+RUN sed -i 's/# Port 22/Port 8080/g' /etc/ssh/sshd_config
 ENV ASPNETCORE_URLS http://*:8080
 ENV ASPNETCORE_ENVIRONMENT Production
-ENTRYPOINT ["dotnet", "ISSCFG.dll"]
+ENTRYPOINT ["/etc/init.d/ssh", "start"]
