@@ -4,7 +4,7 @@ WORKDIR /ISSCFG
 RUN dotnet restore
 RUN dotnet publish -c Production -o out
 WORKDIR /ISSCFG/out
-EXPOSE 8080/tcp
+EXPOSE 8080 5432
 ENV ASPNETCORE_URLS http://*:8080
 ENV ASPNETCORE_ENVIRONMENT Production
 ENTRYPOINT ["dotnet", "ISSCFG.dll"]
