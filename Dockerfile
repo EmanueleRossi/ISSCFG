@@ -11,7 +11,6 @@ RUN apt-get update -y
 RUN apt install openssh-server -y
 RUN sed -i 's/#Port 22/Port 8080/g' /etc/ssh/sshd_config
 RUN sed -i 's/#ListenAddress/ListenAddress/g' /etc/ssh/sshd_config
-RUN /etc/init.d/ssh start
-ENV ASPNETCORE_URLS http://*:8081
+ENV ASPNETCORE_URLS http://*:8080
 ENV ASPNETCORE_ENVIRONMENT Production
-ENTRYPOINT ["dotnet", "ISSCFG.dll"]
+ENTRYPOINT ["/etc/init.d/ssh", "start"]
