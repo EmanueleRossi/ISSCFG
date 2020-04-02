@@ -48,13 +48,13 @@ namespace ISSCFG.Migrations
                 columns: new[] { "Id", "Code", "Description", "ImagePath", "Producer", "Url" },
                 values: new object[,]
                 {
-                    { -1, "QM55R", "Samsung Smart Signage Display", "img/Items/QM55R.jpg", "SAMSUNG", "https://displaysolutions.samsung.com/digital-signage/detail/1431/QM55R" },
-                    { -2, "WM65R", "Flip 2 - SMART Signage", "img/Items/FLIP2_65.jpg", "SAMSUNG", "https://www.samsung.com/it/samsung-flip/" },
-                    { -3, "STUDIO", "Premium USB Video Bar", "img/Items/STUDIO.jpg", "POLY", "https://www.polycom.com/hd-video-conferencing/room-video-systems/polycom-studio.html" },
-                    { -4, "STUDIO-X30", "Poly Studio X30", "img/Items/STUDIO-X30.jpg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x30-data-sheet-enus.pdf" },
-                    { -5, "STUDIO-X50", "Poly Studio X50", "img/Items/STUDIO-X50.jpg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x50-data-sheet-enus.pdf" },
-                    { -6, "CS_CX-20", "ClickShare CX-20", "img/Items/CX-20.png", "BARCO", "https://www.barco.com/en/clickshare/wireless-conferencing/cx-20" },
-                    { -7, "VCEM", "VC Studio Expansion Microphone", "", "BARCO", "" }
+                    { -1, "QM55R", "Samsung Smart Signage Display", "~/img/Products/QM55R.jpeg", "SAMSUNG", "https://displaysolutions.samsung.com/digital-signage/detail/1431/QM55R" },
+                    { -2, "WM65R", "Flip 2 - SMART Signage", "~/img/Products/FLIP2_65.jpeg", "SAMSUNG", "https://www.samsung.com/it/samsung-flip/" },
+                    { -3, "STUDIO", "Premium USB Video Bar", "~/img/Products/STUDIO.jpeg", "POLY", "https://www.polycom.com/hd-video-conferencing/room-video-systems/polycom-studio.html" },
+                    { -4, "STUDIO-X30", "Poly Studio X30", "~/img/Products/STUDIO-X30.jpeg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x30-data-sheet-enus.pdf" },
+                    { -5, "STUDIO-X50", "Poly Studio X50", "~/img/Products/STUDIO-X50.jpeg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x50-data-sheet-enus.pdf" },
+                    { -6, "CS_CX-20", "ClickShare CX-20", "~/img/Products/CX-20.png", "BARCO", "https://www.barco.com/en/clickshare/wireless-conferencing/cx-20" },
+                    { -7, "VCEM", "VC Studio Expansion Microphone", "~/img/ACS.jpeg", "BARCO", "" }
                 });
         }
 

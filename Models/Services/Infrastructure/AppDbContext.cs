@@ -42,49 +42,49 @@ namespace ISSCFG.Models.Services.Infrastructure
                     Id = -1,
                     Producer = "SAMSUNG",
                     Description = "Samsung Smart Signage Display",
-                    ImagePath = "img/Items/QM55R.jpg",
+                    ImagePath = "~/img/Products/QM55R.jpeg",
                     Url = "https://displaysolutions.samsung.com/digital-signage/detail/1431/QM55R"
                 });
                 entity.HasData(new Item("WM65R") { 
                     Id = -2,
                     Producer = "SAMSUNG",
                     Description = "Flip 2 - SMART Signage",
-                    ImagePath = "img/Items/FLIP2_65.jpg",
+                    ImagePath = "~/img/Products/FLIP2_65.jpeg",
                     Url = "https://www.samsung.com/it/samsung-flip/"
                 });                
                 entity.HasData(new Item("STUDIO") { 
                     Id = -3,
                     Producer = "POLY",
                     Description = "Premium USB Video Bar",
-                    ImagePath = "img/Items/STUDIO.jpg",
+                    ImagePath = "~/img/Products/STUDIO.jpeg",
                     Url = "https://www.polycom.com/hd-video-conferencing/room-video-systems/polycom-studio.html"
                 });
                 entity.HasData(new Item("STUDIO-X30") { 
                     Id = -4,
                     Producer = "POLY",
                     Description = "Poly Studio X30",
-                    ImagePath = "img/Items/STUDIO-X30.jpg",
+                    ImagePath = "~/img/Products/STUDIO-X30.jpeg",
                     Url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x30-data-sheet-enus.pdf"
                 });
                 entity.HasData(new Item("STUDIO-X50") { 
                     Id = -5,
                     Producer = "POLY",
                     Description = "Poly Studio X50",
-                    ImagePath = "img/Items/STUDIO-X50.jpg",
+                    ImagePath = "~/img/Products/STUDIO-X50.jpeg",
                     Url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/studio-x50-data-sheet-enus.pdf"
                 });                
                 entity.HasData(new Item("CS_CX-20") { 
                     Id = -6,
                     Producer = "BARCO",
                     Description = "ClickShare CX-20",
-                    ImagePath = "img/Items/CX-20.png",
+                    ImagePath = "~/img/Products/CX-20.png",
                     Url = "https://www.barco.com/en/clickshare/wireless-conferencing/cx-20"
                 });
                 entity.HasData(new Item("VCEM") { 
                     Id = -7,
                     Producer = "BARCO",
                     Description = "VC Studio Expansion Microphone",
-                    ImagePath = "",
+                    ImagePath = "~/img/ACS.jpeg",
                     Url = ""
                 });
             });

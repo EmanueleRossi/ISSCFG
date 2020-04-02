@@ -68,8 +68,7 @@ namespace ISSCFG.Controllers
             UserInputViewModel viewModel = UserInputService.GetUserInput(id); 
             Logger.LogDebug($"[CompleteContacts] viewModel=|{viewModel.ToString()}|");                 
             List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
-            Logger.LogDebug($"[Configuration]=|{string.Join("\n", configuration.Select(p => p.ToString()))}|");          
-            return RedirectToAction("ToStep01", "Cfg");
+            return View("Basket", new BasketViewModel(configuration));
         } 
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

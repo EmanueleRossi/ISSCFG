@@ -3,9 +3,9 @@
 @{
     ViewData["Title"] = "Contacts";
 }
-
+<h2 class="question">Ci daresti le informazioni per contattarti?</h2>
+<hr>
 <div class="container">
-    <h2 class="question">Ci daresti le informazioni per contattarti?</h2>
     <form asp-controller="Cfg" asp-action="CompleteContacts" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
         <div class="form-group row">
             <label for="name">Nominativo</label>                
@@ -26,11 +26,11 @@
             <small id="mailHelp" class="form-text text-muted">Sarà usato, se necessario, dopo lo scambio di mail e non sarà mai condiviso con nessuno.</small>         
         </div>
         @Html.Hidden("Id")
-        <button type="submit" class="btn btn-primary">Invia</button>
+        <button type="submit" class="btn btn-block btn-primary">Configura</button>
     </form>
 </div>
 <div class="container">       
     <a class="nav-link text-dark" asp-controller="Cfg" asp-action="ToStep03" asp-route-id="@Model.Id">
-        <button type="button" class="btn btn-sm btn-primary">< Indietro</button>
+        <button type="button" class="btn btn-lg btn-link">< Indietro</button>
     </a>      
 </div>

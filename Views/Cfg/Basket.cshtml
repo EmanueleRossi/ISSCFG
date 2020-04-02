@@ -1,0 +1,33 @@
+@model ISSCFG.Models.ViewModels.BasketViewModel
+@using ISSCFG.Models.ViewModels
+
+@{
+    ViewData["Title"] = "Basket";
+}
+<h2 class="question">Questa è la configurazione consigliata:</h2>
+<hr>
+<div class="container">    
+    @foreach(ItemViewModel item in Model)
+    {
+    <div class="row course">
+        <div class="col-md-2">
+            @if(!string.IsNullOrWhiteSpace(item.ImagePath))
+            {
+                <img src="@item.ImagePath" alt="@item.Description" width="160" asp-append-version="true">
+            }
+        </div>
+        <div class="col-md-8">
+            <h3>@item.Description</h3>
+            <author>by @item.Producer (@item.Code)</author>
+        </div>
+        <div class="col-md-2 d-flex align-items-center">
+            <a class="btn btn-outline-primary" href="@item.Url">Dettagli</a>
+        </div>
+    </div>
+    }
+</div>
+<div class="container">       
+    <a class="nav-link text-dark" asp-controller="Cfg" asp-action="ToStep01">
+        <button type="button" class="btn btn-lg btn-link">Ricomincia!</button>
+    </a>      
+</div>
