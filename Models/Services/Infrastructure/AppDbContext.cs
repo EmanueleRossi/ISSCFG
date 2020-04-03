@@ -22,7 +22,7 @@ namespace ISSCFG.Models.Services.Infrastructure
                 string extensionString = "{";
                 foreach (var e in Options.Extensions)
                     extensionString += e.GetType() + "},";
-                extensionString += "}";
+                    extensionString += "}";
                 throw new ArgumentException($@"
                     In Microsoft.EntityFrameworkCore.DbContextOptionsBuilder can't find 
                     Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.NpgsqlOptionsExtension extension
@@ -84,7 +84,7 @@ namespace ISSCFG.Models.Services.Infrastructure
                     Id = -7,
                     Producer = "BARCO",
                     Description = "VC Studio Expansion Microphone",
-                    ImagePath = "~/img/ACS.jpeg",
+                    ImagePath = "~/img/Products/VCEM.jpeg",
                     Url = ""
                 });
                 entity.HasData(new Item("TC8") { 
@@ -92,15 +92,30 @@ namespace ISSCFG.Models.Services.Infrastructure
                     Producer = "POLY",
                     Description = "Poly TC8 Tablet",
                     ImagePath = "~/img/Products/TC8.jpeg",
-                    Url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/poly-tc8-data-sheet-enus.pdf"
+                    Url = "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/poly-tc8-data-sheet-enus.pdf"                    
                 });                
+                entity.HasData(new Item("ACS_PRE-CFG") { 
+                    Id = -9,
+                    Producer = "ACS",
+                    Description = "Configurazione: aggiornamento firmware, set-up...",
+                    ImagePath = "~/img/ACS.jpeg",
+                    Url = ""
+                });  
+                entity.HasData(new Item("ACS_REMOTE-SUPPORT") { 
+                    Id = -10,
+                    Producer = "ACS",
+                    Description = "Supporto remoto in fase di installazione",
+                    ImagePath = "~/img/ACS.jpeg",
+                    Url = ""
+                });                                  
             });
 
             modelBuilder.Entity<UserInput>(entity =>
             {            
                 entity.ToTable("UserInputs");
                 entity.HasKey(input => input.Id);
-                entity.Property(input => input.Id).ValueGeneratedOnAdd();            
+                entity.Property(input => input.Id).ValueGeneratedOnAdd();  
+                entity.Property(input => input.InsertDate).HasComment("Application level entity creation date, in UTC.");
             });
         }        
     

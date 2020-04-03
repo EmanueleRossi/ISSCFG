@@ -4,6 +4,8 @@ using ISSCFG.Models.Services.Infrastructure;
 using ISSCFG.Models.ViewModels;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ISSCFG.Models.Entities;
+using System.Net;
+using System;
 
 namespace ISSCFG
 {
@@ -18,10 +20,19 @@ namespace ISSCFG
 
         public int newUserInput() 
         {
-            EntityEntry<UserInput> added = DbContext.UserInputs.Add(new UserInput());
+            UserInput newUserInput = new UserInput();
+            newUserInput.InsertDate = DateTime.UtcNow;
+            EntityEntry<UserInput> added = DbContext.UserInputs.Add(newUserInput);
             DbContext.SaveChanges();
             return added.Entity.Id;
         }      
+
+        public void setRemoteIpAddress(IPAddress remoteIpAddress, int id)
+        {
+            UserInput found = DbContext.UserInputs.Single(input => input.Id == id);            
+            found.RemoteIpAddress = remoteIpAddress.ToString();
+            DbContext.SaveChanges();
+        }
 
         public void setStep01(string step01, int id) 
         {                    
@@ -61,6 +72,6 @@ namespace ISSCFG
                 .Select(input => UserInputViewModel.FromEntity(input)); 
             
             return queryLinq.Single();
-        }        
+        }
     }
 }

@@ -6,6 +6,7 @@ using ISSCFG.Models.Services.Application;
 using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,7 @@ namespace ISSCFG
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllersWithViews();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IUserInputService, UserInputService>();
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IConfigurator, MeetingRoomConfigurator>();

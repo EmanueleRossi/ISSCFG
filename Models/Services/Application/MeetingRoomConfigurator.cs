@@ -79,7 +79,14 @@ namespace ISSCFG.Models.Services.Application
             else
             {
                 throw new NotImplementedException($"User Input=|{userInput.Step03}| not managed in Step03 enum!"); 
-            }                            
+            }               
+
+            if (basket.Count != 0) 
+            {
+                basket.Add(await ItemService.GetItemAsync("ACS_PRE-CFG"));
+                basket.Add(await ItemService.GetItemAsync("ACS_REMOTE-SUPPORT"));
+            }
+
             return basket;
         }
     }

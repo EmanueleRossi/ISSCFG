@@ -5,7 +5,7 @@ Infinity Self Service Configurator
 Log-in to an image
 <code>docker exec -it <container name> /bin/bash</code>
 
-## Cloud SQL Prox
+## Cloud SQL Proxy
 <code>c:/dev/tools/Google/cloud_sql_proxy_x64.exe -instances=isscfg:europe-west1:isscfg=tcp:5432 -credential_file=c:/dev/tools/Google/isscfg-ff581b9dfb85.json</code>
 
 ## DATABASE

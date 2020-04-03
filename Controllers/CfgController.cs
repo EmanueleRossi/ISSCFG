@@ -8,6 +8,7 @@ using ISSCFG.Models.Services;
 using ISSCFG.Models.ViewModels;
 using ISSCFG.Models.Services.Application;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace ISSCFG.Controllers
 {
@@ -16,19 +17,22 @@ namespace ISSCFG.Controllers
         private readonly ILogger<HomeController> Logger;  
         private readonly IUserInputService UserInputService;
         private readonly IConfigurator Configurator;
+        private readonly IActionContextAccessor Accessor;
 
-        public CfgController(ILogger<HomeController> logger, IUserInputService userInputService, IConfigurator configurator)
+        public CfgController(ILogger<HomeController> logger, IActionContextAccessor accessor, IUserInputService userInputService, IConfigurator configurator)
         {
             Logger = logger;
+            Accessor = accessor;
             UserInputService = userInputService;
             Configurator = configurator;
         }
                 
         public IActionResult ToStep01(int id)
-        {   
+        {
             Logger.LogDebug($"Received [id]=|{id}|");                 
             if (id == 0) id = UserInputService.newUserInput();
-            Logger.LogDebug($"ToStep01 [id]=|{id}|");                 
+            Logger.LogDebug($"ToStep01 [id]=|{id}|");
+            UserInputService.setRemoteIpAddress(Accessor.ActionContext.HttpContext.Connection.RemoteIpAddress, id);                                         
             return View("Step01", UserInputService.GetUserInput(id));
         }
         public IActionResult CompleteStep01(string step01, int id)
@@ -70,7 +74,7 @@ namespace ISSCFG.Controllers
             List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
             return View("Basket", new BasketViewModel(configuration));
         } 
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
