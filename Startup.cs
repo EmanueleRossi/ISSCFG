@@ -59,7 +59,7 @@ namespace ISSCFG
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -68,6 +68,7 @@ namespace ISSCFG
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseForwardedHeaders();
         }
     }
 }
