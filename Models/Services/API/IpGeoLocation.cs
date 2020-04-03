@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using IPGeolocation;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,13 @@ namespace ISSCFG.Models.Services.API
         public IpGeoLocation(IConfiguration configuration, ILogger<IpGeoLocation> logger)
         {
             Logger = logger;
-            Api = new IPGeolocationAPI(configuration.GetValue<string>("IpGeoLocationAPIKey"));
+            try 
+            {
+                Api = new IPGeolocationAPI(configuration.GetValue<string>("IpGeoLocationAPIKey"));
+            } catch (Exception e)
+            {
+                Logger.LogError($"Can't initialize IPGeolocation: {e.Message}");
+            }
         }
 
         public void LocateAddress(IPAddress address)
@@ -22,11 +29,14 @@ namespace ISSCFG.Models.Services.API
             Logger.LogDebug($"address=|{address.ToString()}|");
             if (!IPAddress.IsLoopback(address))
             {
-                GeolocationParams geoParams = new GeolocationParams();                                  
-                geoParams.SetIp(address.ToString());
-                geoInfo = Api.GetGeolocation(geoParams);
-                if(geoInfo.GetStatus() != (int)HttpStatusCode.OK) 
-                    Logger.LogError(geoInfo.GetMessage());
+                if (Api != null)
+                {
+                    GeolocationParams geoParams = new GeolocationParams();                                  
+                    geoParams.SetIp(address.ToString());
+                    geoInfo = Api.GetGeolocation(geoParams);
+                    if(geoInfo.GetStatus() != (int)HttpStatusCode.OK) 
+                        Logger.LogError(geoInfo.GetMessage());
+                }
             }                                            
         }
 
