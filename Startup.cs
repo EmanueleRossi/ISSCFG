@@ -1,6 +1,7 @@
 using System;
 
 using System.IO;
+using Google.Cloud.Diagnostics.AspNetCore;
 using ISSCFG.Models.Services;
 using ISSCFG.Models.Services.API;
 using ISSCFG.Models.Services.Application;
@@ -37,9 +38,10 @@ namespace ISSCFG
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("AppConnectionString")));         
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILoggerFactory loggerFactory)
         {
-            logger.LogInformation($"[ISSCFG] Environment=|{env.EnvironmentName}|");                 
+            loggerFactory.AddGoogle(app.ApplicationServices, "isscfg");
+
             if (env.IsDevelopment())
             {           
                 app.UseDeveloperExceptionPage();
