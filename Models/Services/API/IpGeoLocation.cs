@@ -3,7 +3,6 @@ using System.Net;
 using IPGeolocation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-
 namespace ISSCFG.Models.Services.API
 {
     public class IpGeoLocation : IIpGeoLocation
@@ -15,13 +14,7 @@ namespace ISSCFG.Models.Services.API
         public IpGeoLocation(IConfiguration configuration, ILogger<IpGeoLocation> logger)
         {
             Logger = logger;
-            try 
-            {
-                Api = new IPGeolocationAPI(configuration.GetValue<string>("IpGeoLocationAPIKey"));
-            } catch (Exception e)
-            {
-                Logger.LogError($"Can't initialize IPGeolocation: {e.Message}");
-            }
+            Api = new IPGeolocationAPI(configuration.GetValue<string>("IpGeoLocationAPIKey"));
         }
 
         public void LocateAddress(IPAddress address)
@@ -29,14 +22,17 @@ namespace ISSCFG.Models.Services.API
             Logger.LogDebug($"address=|{address.ToString()}|");
             if (!IPAddress.IsLoopback(address))
             {
-                if (Api != null)
+                try 
                 {
                     GeolocationParams geoParams = new GeolocationParams();                                  
                     geoParams.SetIp(address.ToString());
                     geoInfo = Api.GetGeolocation(geoParams);
                     if(geoInfo.GetStatus() != (int)HttpStatusCode.OK) 
                         Logger.LogError(geoInfo.GetMessage());
-                }
+                } catch (Exception e)
+                {
+                    Logger.LogError($"Can't initialize IPGeolocation: {e.Message}");
+                }                
             }                                            
         }
 
