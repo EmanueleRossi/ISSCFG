@@ -6,16 +6,19 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ISSCFG.Models.Entities;
 using System.Net;
 using System;
+using ISSCFG.Models.Services.API;
 
 namespace ISSCFG
 {
     public class UserInputService : IUserInputService
     {
         private readonly AppDbContext DbContext;
+        private readonly IIpGeoLocation Locator;
 
-        public UserInputService(AppDbContext dbContext)
+        public UserInputService(AppDbContext dbContext, IIpGeoLocation locator)
         {
-            this.DbContext = dbContext;
+            DbContext = dbContext;
+            Locator = locator;
         }
 
         public int newUserInput() 
@@ -23,6 +26,7 @@ namespace ISSCFG
             UserInput newUserInput = new UserInput();
             newUserInput.InsertDate = DateTime.UtcNow;
             EntityEntry<UserInput> added = DbContext.UserInputs.Add(newUserInput);
+            // TODO questo è il primo punto in cui cerca di connettersi al DB... gestire l'eccezione!            
             DbContext.SaveChanges();
             return added.Entity.Id;
         }      
@@ -31,6 +35,11 @@ namespace ISSCFG
         {
             UserInput found = DbContext.UserInputs.Single(input => input.Id == id);            
             found.RemoteIpAddress = remoteIpAddress.ToString();
+            Locator.LocateAddress(remoteIpAddress);
+            found.Coordinates = Locator.GetCoordinates();
+            found.Country = Locator.GetCountryName();
+            found.City = Locator.GetCity();
+            found.Organization = Locator.GetOrganization();
             DbContext.SaveChanges();
         }
 

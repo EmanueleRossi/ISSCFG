@@ -38,6 +38,10 @@ namespace ISSCFG.Migrations
                     Company = table.Column<string>(nullable: true),
                     Mail = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
+                    Coordinates = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Organization = table.Column<string>(nullable: true),
                     RemoteIpAddress = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: false, comment: "Application level entity creation date, in UTC.")
                 },

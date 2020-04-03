@@ -2,6 +2,7 @@ using System;
 
 using System.IO;
 using ISSCFG.Models.Services;
+using ISSCFG.Models.Services.API;
 using ISSCFG.Models.Services.Application;
 using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ namespace ISSCFG
             services.AddTransient<IUserInputService, UserInputService>();
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IConfigurator, MeetingRoomConfigurator>();
+            services.AddTransient<IIpGeoLocation, IpGeoLocation>();
 
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("AppConnectionString")));         
         }

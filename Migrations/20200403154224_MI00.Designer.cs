@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ISSCFG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200403083620_MI00")]
+    [Migration("20200403154224_MI00")]
     partial class MI00
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,16 @@ namespace ISSCFG.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
                     b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Coordinates")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("InsertDate")
@@ -39,6 +48,9 @@ namespace ISSCFG.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Organization")
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")

@@ -26,7 +26,16 @@ namespace ISSCFG.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
                     b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Coordinates")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("InsertDate")
@@ -37,6 +46,9 @@ namespace ISSCFG.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Organization")
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")

@@ -9,22 +9,25 @@ using ISSCFG.Models.ViewModels;
 using ISSCFG.Models.Services.Application;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using ISSCFG.Models.Services.API;
 
 namespace ISSCFG.Controllers
 {
     public class CfgController : Controller
     {
         private readonly ILogger<HomeController> Logger;  
+        private readonly IActionContextAccessor Accessor;
+        private readonly IIpGeoLocation Locator;
         private readonly IUserInputService UserInputService;
         private readonly IConfigurator Configurator;
-        private readonly IActionContextAccessor Accessor;
-
-        public CfgController(ILogger<HomeController> logger, IActionContextAccessor accessor, IUserInputService userInputService, IConfigurator configurator)
+        
+        public CfgController(ILogger<HomeController> logger, IActionContextAccessor accessor, IIpGeoLocation locator, IUserInputService userInputService, IConfigurator configurator)
         {
             Logger = logger;
             Accessor = accessor;
+            Locator = locator;
             UserInputService = userInputService;
-            Configurator = configurator;
+            Configurator = configurator;            
         }
                 
         public IActionResult ToStep01(int id)
