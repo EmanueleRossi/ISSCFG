@@ -36,6 +36,7 @@ namespace ISSCFG.Models.Services.Application
                     case Step01.StandaloneMeetingRoom:
                         basket.Add(await ItemService.GetItemAsync("STUDIO-X30"));
                         basket.Add(await ItemService.GetItemAsync("TC8"));
+                        basket.Add(await ItemService.GetItemAsync("MS-TRL"));                        
                         break; 
                     default:
                         throw new NotImplementedException($"User Input=|{step01userInput}| in Step01 enum, but not managed in compute method!"); 

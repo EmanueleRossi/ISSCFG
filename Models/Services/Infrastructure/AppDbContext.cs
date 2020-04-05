@@ -107,7 +107,14 @@ namespace ISSCFG.Models.Services.Infrastructure
                     Description = "Supporto remoto in fase di installazione",
                     ImagePath = "~/img/ACS.jpeg",
                     Url = ""
-                });                                  
+                });               
+                entity.HasData(new Item("MS-TRL") { 
+                    Id = -11,
+                    Producer = "Microsoft",
+                    Description = "Meeting Room License",
+                    ImagePath = "~/img/MS-TRL.jpeg",
+                    Url = "https://office365itpros.com/2018/12/17/teams-device-meeting-license/"
+                });                                      
             });
 
             modelBuilder.Entity<UserInput>(entity =>
