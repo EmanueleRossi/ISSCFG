@@ -1,13 +1,13 @@
 using System;
 
 using System.IO;
-using Google.Cloud.Diagnostics.AspNetCore;
 using ISSCFG.Models.Services;
 using ISSCFG.Models.Services.API;
 using ISSCFG.Models.Services.Application;
 using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +29,12 @@ namespace ISSCFG
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllersWithViews();
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.KnownNetworks.Clear();
+                options.KnownProxies.Clear();                
+            });
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IUserInputService, UserInputService>();
             services.AddTransient<IItemService, ItemService>();
@@ -40,8 +46,6 @@ namespace ISSCFG
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddGoogle(app.ApplicationServices, "isscfg");
-
             if (env.IsDevelopment())
             {           
                 app.UseDeveloperExceptionPage();
@@ -57,6 +61,7 @@ namespace ISSCFG
                 // The default HSTS value is 30 days. You may want to change this for Itemion scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseForwardedHeaders();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -70,7 +75,6 @@ namespace ISSCFG
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseForwardedHeaders();
         }
     }
 }

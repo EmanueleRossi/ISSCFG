@@ -14,6 +14,7 @@ namespace ISSCFG.Models.Services.API
         public IpGeoLocation(IConfiguration configuration, ILogger<IpGeoLocation> logger)
         {
             Logger = logger;
+            Logger.LogDebug($"IpGeoLocationAPIKey=|{configuration.GetValue<string>("IpGeoLocationAPIKey")}|");
             Api = new IPGeolocationAPI(configuration.GetValue<string>("IpGeoLocationAPIKey"));
         }
 
