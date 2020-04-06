@@ -30,19 +30,19 @@ namespace ISSCFG
 
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddLocalization();
             services.Configure<RequestLocalizationOptions>(opts =>
                 {
                     var supportedCultures = new[]
                     {
-                        new CultureInfo("de"),
-                        new CultureInfo("it"),
-                        new CultureInfo("en"),                        
+                        new CultureInfo("de-DE"),
+                        new CultureInfo("it-IT"),
+                        new CultureInfo("en-US"),                        
                     };
-                    opts.DefaultRequestCulture = new RequestCulture("en");
+                    opts.DefaultRequestCulture = new RequestCulture("en-US");
                     opts.SupportedCultures = supportedCultures;
                     opts.SupportedUICultures = supportedCultures;
                 });
+            services.AddLocalization();                
 
             services.AddControllersWithViews().AddViewLocalization();
             services.Configure<ForwardedHeadersOptions>(options =>
