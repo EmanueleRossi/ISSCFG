@@ -1,11 +1,13 @@
 ﻿@model ISSCFG.Models.ViewModels.UserInputViewModel
 @using ISSCFG.Models.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Step 02";
 }
 
-<h2 class="question">Vuoi utilizzare lo schermo della Meeting Room solo come Display od anche come lavagna multimediale?</h2>
+<h2 class="question">@Localizer["VideoQuestion"]</h2>
 <hr>
 <div class="container">
     <div class="card-deck mb-3 text-center">
@@ -14,9 +16,9 @@
             <i class="fas fa-5x fa-tv"></i>
         </div>
         <div class="card-body">
-            Lo schermo della meeting room deve visualizzare i contenuti del meeting.
+            @Localizer["DisplayExplanation"]
             <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep02" asp-route-step02="@Step02.Display" asp-route-id="@Model.Id">            
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Display</button>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">@Localizer["Display"]</button>
             </a>
         </div>
     </div>
@@ -24,16 +26,17 @@
         <div class="card-header">
             <i class="fas fa-5x fa-chalkboard-teacher"></i>
         </div>
-        <div class="card-body">            
-            Lo schermo della Meeting Room deve visualizzare i contenuti del meeting ma anche consentire di scrivere, disegnare...
+        <div class="card-body">      
+            @Localizer["DigitalBlackBoardExplanation"]      
+            
             <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep02" asp-route-step02="@Step02.DigitalBlackBoard" asp-route-id="@Model.Id">
-                <button type="button" class="btn btn-lg btn-block btn-primary">Lavagna Multimediale</button>
+                <button type="button" class="btn btn-lg btn-block btn-primary">@Localizer["DigitalBlackBoard"]</button>
             </a>
         </div>
     </div>
 </div>
 <div class="container">    
     <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="ToStep01" asp-route-id="@Model.Id">
-        <button type="button" class="btn btn-lg btn-link">< Indietro</button>
+        <button type="button" class="btn btn-lg btn-link">@Localizer["Back"]</button>
     </a>
 </div>

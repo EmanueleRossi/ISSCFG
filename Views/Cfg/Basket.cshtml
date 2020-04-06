@@ -1,10 +1,12 @@
 @model ISSCFG.Models.ViewModels.BasketViewModel
 @using ISSCFG.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Basket";
 }
-<h2 class="question">Questa è la configurazione consigliata:</h2>
+<h2 class="question">@Localizer["Title"]</h2>
 <hr>
 <div class="container">    
     @foreach(ItemViewModel item in Model)
@@ -31,6 +33,6 @@
 </div>
 <div class="container">       
     <a class="nav-link text-dark" asp-controller="Cfg" asp-action="ToStep01">
-        <button type="button" class="btn btn-lg btn-link">Ricomincia!</button>
+        <button type="button" class="btn btn-lg btn-link">@Localizer["Restart"]</button>
     </a>      
 </div>

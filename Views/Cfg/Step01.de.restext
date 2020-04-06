@@ -1,0 +1,5 @@
+IntendedUseQuestion=Wie wird der Tagungsraum genutzt?
+ComputerExtension=Computererweiterung
+ComputerExtensionExplanation=Einer der Teilnehmer verwendet seinen Computer für das Meeting und teilt Audio und Video in hoher Qualität.
+Standalone=Eigenständiger Besprechungsraum
+StandaloneExplanation=Es muss möglich sein, eine Verbindung vom Besprechungsraum aus herzustellen, ohne den Computer eines der Teilnehmer zu verwenden.

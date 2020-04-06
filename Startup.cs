@@ -1,5 +1,5 @@
 using System;
-
+using System.Globalization;
 using System.IO;
 using ISSCFG.Models.Services;
 using ISSCFG.Models.Services.API;
@@ -8,12 +8,14 @@ using ISSCFG.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace ISSCFG
 {
@@ -28,7 +30,24 @@ namespace ISSCFG
 
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddControllersWithViews();
+            services.AddLocalization();
+            services.Configure<RequestLocalizationOptions>(opts =>
+                {
+                    var supportedCultures = new[]
+                    {
+                        new CultureInfo("de-DE"),
+                        new CultureInfo("de"),
+                        new CultureInfo("it-IT"),
+                        new CultureInfo("it"),
+                        new CultureInfo("en-US"),
+                        new CultureInfo("en"),                        
+                    };
+                    opts.DefaultRequestCulture = new RequestCulture("en-US");
+                    opts.SupportedCultures = supportedCultures;
+                    opts.SupportedUICultures = supportedCultures;
+                });
+
+            services.AddControllersWithViews().AddViewLocalization();
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;

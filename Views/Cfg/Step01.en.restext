@@ -1,0 +1,5 @@
+IntendedUseQuestion=How will the meeting room be used?
+ComputerExtension=Computer Extension
+ComputerExtensionExplanation=One of the participants uses their computer for the meeting and shares high quality audio and video.
+Standalone=Standalone Meeting Room 
+StandaloneExplanation=It must be possible to connect from the meeting room without using the computer of one of the participants.

@@ -1,36 +1,39 @@
 ﻿@model ISSCFG.Models.ViewModels.UserInputViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Contacts";
 }
-<h2 class="question">Ci daresti le informazioni per contattarti?</h2>
+<h2 class="question">@Localizer["Title"]</h2>
 <hr>
 <div class="container">
     <form asp-controller="Cfg" asp-action="CompleteContacts" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
         <div class="form-group row">
-            <label for="name">Nominativo</label>                
+            <label for="name">@Localizer["Name"]</label>                
             <input asp-for="@Model.Name" type="text" class="form-control form-control-sm" id="name" placeholder="Nominativo"/> 
         </div>
         <div class="form-group row">
-            <label for="name">Azienda</label>                
+            <label for="name">@Localizer["Company"]</label>                
             <input asp-for="@Model.Company" type="text" class="form-control form-control-sm" id="company" placeholder="Azienda"/> 
         </div>
         <div class="form-group row">
-            <label for="mail">Mail</label>                
-            <input asp-for="@Model.Mail" type="email" class="form-control form-control-sm" id="mail" aria-describedby="mailHelp" placeholder="nome@azienda.it"/> 
-            <small id="mailHelp" class="form-text text-muted">Sarà usato per contattarti in questa occasione e non sarà mai condiviso con nessuno.</small>         
+            <label for="mail">@Localizer["Mail"]</label>  
+            <input ValidationGroup="CfgForm" asp-for="@Model.Mail" type="email" class="form-control form-control-sm" id="mail" aria-describedby="mailHelp" placeholder="nome@azienda.it"/>
+            <small id="mailHelp" class="form-text text-muted">@Localizer["MailHelp"]</small>         
+            <asp:RequiredFieldValidator ID="pass" runat="server" ControlToValidate="mail" ErrorMessage="@Localizer["MailError"]" ForeColor="Red"></asp:RequiredFieldValidator>        
         </div>
         <div class="form-group row">
-            <label for="phone">Telefono</label>                
+            <label for="phone">@Localizer["Phone"]</label>                
             <input asp-for="@Model.Phone" type="tel" class="form-control form-control-sm" id="phone" aria-describedby="phoneHelp" placeholder="+39 (000) 1234567"/> 
-            <small id="mailHelp" class="form-text text-muted">Sarà usato, se necessario, dopo lo scambio di mail e non sarà mai condiviso con nessuno.</small>         
+            <small id="mailHelp" class="form-text text-muted">@Localizer["PhoneHelp"]</small>         
         </div>
         @Html.Hidden("Id")
-        <button type="submit" class="btn btn-block btn-primary">Configura</button>
+        <button type="submit" ValidationGroup="CfgForm" class="btn btn-block btn-primary">@Localizer["Create"]</button>
     </form>
 </div>
-<div class="container">       
+<div class="container" align="center">       
     <a class="nav-link text-dark" asp-controller="Cfg" asp-action="ToStep03" asp-route-id="@Model.Id">
-        <button type="button" class="btn btn-lg btn-link">< Indietro</button>
+        <button type="button" class="btn btn-lg btn-link">@Localizer["Back"]</button>
     </a>      
 </div>

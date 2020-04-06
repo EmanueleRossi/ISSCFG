@@ -1,11 +1,13 @@
 ﻿@model ISSCFG.Models.ViewModels.UserInputViewModel
 @using ISSCFG.Models.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Step 01";
 }
 
-<h2 class="question">Come verrà utilizzata la meeting room?</h2>
+<h2 class="question">@Localizer["IntendedUseQuestion"]</h2>
 <hr>
 <div class="container">
     <div class="card-deck mb-3 text-center">
@@ -14,9 +16,9 @@
             <i class="fas fa-5x fa-laptop"></i>
         </div>
         <div class="card-body">
-            Uno dei partecipanti utilizza il proprio computer per il meeting e condividendo audio e video di alta qualità con i partecipanti.
+            @Localizer["ComputerExtensionExplanation"]
             <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep01" asp-route-step01="@Step01.ComputerExtension" asp-route-id="@Model.Id">
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Computer Extension</button> 
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">@Localizer["ComputerExtension"]</button> 
             </a>
         </div>
     </div>
@@ -25,9 +27,9 @@
             <i class="fab fa-5x fa-intercom"></i>
         </div>
         <div class="card-body">            
-            Dalla meeting room deve essere possibile partecipare al meeting senza utilizzare il computer di uno dei partecipanti.
+            @Localizer["StandaloneExplanation"]
             <a class="nav-link text-dark" asp-area="" asp-controller="Cfg" asp-action="CompleteStep01" asp-route-step01="@Step01.StandaloneMeetingRoom" asp-route-id="@Model.Id">
-                <button type="button" class="btn btn-lg btn-block btn-primary">Standalone Meeting Room</button>
+                <button type="button" class="btn btn-lg btn-block btn-primary">@Localizer["Standalone"]</button>
             </a>
         </div>
     </div>
