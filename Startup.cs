@@ -35,14 +35,11 @@ namespace ISSCFG
                 {
                     var supportedCultures = new[]
                     {
-                        new CultureInfo("de-DE"),
                         new CultureInfo("de"),
-                        new CultureInfo("it-IT"),
                         new CultureInfo("it"),
-                        new CultureInfo("en-US"),
                         new CultureInfo("en"),                        
                     };
-                    opts.DefaultRequestCulture = new RequestCulture("en-US");
+                    opts.DefaultRequestCulture = new RequestCulture("en");
                     opts.SupportedCultures = supportedCultures;
                     opts.SupportedUICultures = supportedCultures;
                 });
