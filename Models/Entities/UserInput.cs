@@ -17,7 +17,7 @@ namespace ISSCFG.Models.Entities
         public string Coordinates { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-        public string Organization { get; set; }
+        public string Provider { get; set; }
         
         public override string ToString()
         {

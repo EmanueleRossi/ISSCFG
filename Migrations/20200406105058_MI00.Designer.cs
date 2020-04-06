@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ISSCFG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200403154224_MI00")]
+    [Migration("20200406105058_MI00")]
     partial class MI00
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,10 +50,10 @@ namespace ISSCFG.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<string>("Organization")
+                    b.Property<string>("Phone")
                         .HasColumnType("text");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("Provider")
                         .HasColumnType("text");
 
                     b.Property<string>("RemoteIpAddress")
@@ -189,6 +189,15 @@ namespace ISSCFG.Migrations
                             ImagePath = "~/img/ACS.jpeg",
                             Producer = "ACS",
                             Url = ""
+                        },
+                        new
+                        {
+                            Id = -11,
+                            Code = "MS-TRL",
+                            Description = "Meeting Room License",
+                            ImagePath = "~/img/MS-TRL.jpeg",
+                            Producer = "Microsoft",
+                            Url = "https://office365itpros.com/2018/12/17/teams-device-meeting-license/"
                         });
                 });
 #pragma warning restore 612, 618

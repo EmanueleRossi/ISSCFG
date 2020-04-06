@@ -38,12 +38,12 @@ namespace ISSCFG.Migrations
                     Company = table.Column<string>(nullable: true),
                     Mail = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
+                    InsertDate = table.Column<DateTime>(nullable: false, comment: "Application level entity creation date, in UTC."),
+                    RemoteIpAddress = table.Column<string>(nullable: true),
                     Coordinates = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
-                    Organization = table.Column<string>(nullable: true),
-                    RemoteIpAddress = table.Column<string>(nullable: true),
-                    InsertDate = table.Column<DateTime>(nullable: false, comment: "Application level entity creation date, in UTC.")
+                    Provider = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,7 +64,8 @@ namespace ISSCFG.Migrations
                     { -7, "VCEM", "VC Studio Expansion Microphone", "~/img/Products/VCEM.jpeg", "BARCO", "" },
                     { -8, "TC8", "Poly TC8 Tablet", "~/img/Products/TC8.jpeg", "POLY", "https://www.polycom.com/content/dam/polycom/common/documents/data-sheets/poly-tc8-data-sheet-enus.pdf" },
                     { -9, "ACS_PRE-CFG", "Configurazione: aggiornamento firmware, set-up...", "~/img/ACS.jpeg", "ACS", "" },
-                    { -10, "ACS_REMOTE-SUPPORT", "Supporto remoto in fase di installazione", "~/img/ACS.jpeg", "ACS", "" }
+                    { -10, "ACS_REMOTE-SUPPORT", "Supporto remoto in fase di installazione", "~/img/ACS.jpeg", "ACS", "" },
+                    { -11, "MS-TRL", "Meeting Room License", "~/img/MS-TRL.jpeg", "Microsoft", "https://office365itpros.com/2018/12/17/teams-device-meeting-license/" }
                 });
         }
 

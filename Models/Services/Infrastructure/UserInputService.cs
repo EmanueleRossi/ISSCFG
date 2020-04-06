@@ -39,7 +39,7 @@ namespace ISSCFG
             found.Coordinates = Locator.GetCoordinates();
             found.Country = Locator.GetCountryName();
             found.City = Locator.GetCity();
-            found.Organization = Locator.GetOrganization();
+            found.Provider = Locator.GetOrganization();
             DbContext.SaveChanges();
         }
 
