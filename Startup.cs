@@ -45,7 +45,7 @@ namespace ISSCFG
                 });
             services.AddLocalization();                
 
-            services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder);
+            services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder).
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
@@ -63,6 +63,8 @@ namespace ISSCFG
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILoggerFactory loggerFactory)
         {
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
             if (env.IsDevelopment())
             {           
                 app.UseDeveloperExceptionPage();
