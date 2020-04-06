@@ -45,7 +45,7 @@ namespace ISSCFG
                 });
             services.AddLocalization();                
 
-            services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+            services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder);
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
