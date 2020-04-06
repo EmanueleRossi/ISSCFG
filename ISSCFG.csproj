@@ -1,12 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web" InitialTargets="BuildResources">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Resx Include="**/*.restext" />
-    <EmbeddedResource Include="**/*.restext" />
+    <EmbeddedResource Include="**/*.restext" CopyToOutputDirectory="Always" />
   </ItemGroup>  
 
   <ItemGroup>  
@@ -18,9 +17,5 @@
     </PackageReference>          
     <PackageReference Include="IpGeoLocation.IpGeoLocation" Version="1.0.9" />  
   </ItemGroup>
-
-  <Target Name="BuildResources">
-    <GenerateResource ExecuteAsTool="false" Sources="@(Resx)"></GenerateResource>
-  </Target>
   
 </Project>
