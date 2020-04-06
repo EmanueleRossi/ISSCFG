@@ -21,7 +21,7 @@ namespace ISSCFG.Models.ViewModels
 
         public override string ToString()
         {
-            return $"id=|{Id}|, code=|{Code}|, producer=|{Producer}|, description=|{Description}|, imagePath=|{ImagePath}|, url=|{Url}|";
+            return $"id=|{Id}|, Code=|{Code}|, Producer=|{Producer}|, Description=|{Description}|, ImagePath=|{ImagePath}|, Url=|{Url}|";
         }          
     }
 }

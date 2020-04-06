@@ -19,7 +19,7 @@ namespace ISSCFG.Models
 
         public override string ToString()
         {
-            return $"id=|{Id}|, code=|{Code}|, producer=|{Producer}|, description=|{Description}|, imagePath=|{ImagePath}|, url=|{Url}|";
+            return $"Id=|{Id}|, Code=|{Code}|, Producer=|{Producer}|, Description=|{Description}|, ImagePath=|{ImagePath}|, Url=|{Url}|";
         }              
     }
 }

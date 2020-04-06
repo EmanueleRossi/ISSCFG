@@ -20,7 +20,7 @@ namespace ISSCFG.Models.Services.API
 
         public void LocateAddress(IPAddress address)
         {
-            Logger.LogDebug($"address=|{address.ToString()}|");
+            Logger.LogTrace($"address=|{address.ToString()}|");
             if (!IPAddress.IsLoopback(address))
             {
                 try 
@@ -32,7 +32,7 @@ namespace ISSCFG.Models.Services.API
                         Logger.LogError(geoInfo.GetMessage());
                 } catch (Exception e)
                 {
-                    Logger.LogError($"Can't initialize IPGeolocation: {e.Message}");
+                    Logger.LogError($"Can't initialize IPGeolocation: |{e.Message}|");
                 }                
             }                                            
         }
