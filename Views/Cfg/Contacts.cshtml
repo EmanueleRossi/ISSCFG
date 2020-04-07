@@ -7,7 +7,7 @@
 }
 <h2 class="question">@Localizer["Title"]</h2>
 <hr>
-<div class="container">
+<div class="container">  
     <form asp-controller="Cfg" asp-action="CompleteContacts" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
         <div class="form-group row">
             <label for="name">@Localizer["Name"]</label>                
@@ -18,10 +18,9 @@
             <input asp-for="@Model.Company" type="text" class="form-control form-control-sm" id="company" placeholder="Azienda"/> 
         </div>
         <div class="form-group row">
-            <label for="mail">@Localizer["Mail"]</label>  
-            <input ValidationGroup="CfgForm" asp-for="@Model.Mail" type="email" class="form-control form-control-sm" id="mail" aria-describedby="mailHelp" placeholder="nome@azienda.it"/>
-            <small id="mailHelp" class="form-text text-muted">@Localizer["MailHelp"]</small>         
-            <asp:RequiredFieldValidator ID="pass" runat="server" ControlToValidate="mail" ErrorMessage="@Localizer["MailError"]" ForeColor="Red"></asp:RequiredFieldValidator>        
+            <label for="mail">@Localizer["Mail"]</label>&nbsp;<span asp-validation-for="@Model.Mail" class="text-danger"></span>
+            <input asp-for="@Model.Mail" type="email" class="form-control form-control-sm" id="mail" aria-describedby="mailHelp" placeholder="nome@azienda.it"/>
+            <small id="mailHelp" class="form-text text-muted">@Localizer["MailHelp"]</small>            
         </div>
         <div class="form-group row">
             <label for="phone">@Localizer["Phone"]</label>                
@@ -29,7 +28,7 @@
             <small id="mailHelp" class="form-text text-muted">@Localizer["PhoneHelp"]</small>         
         </div>
         @Html.Hidden("Id")
-        <button type="submit" ValidationGroup="CfgForm" class="btn btn-block btn-primary">@Localizer["Create"]</button>
+        <button id="submit-button" type="submit" class="btn btn-block btn-primary">@Localizer["Create"]</button>
     </form>
 </div>
 <div class="container" align="center">       
@@ -37,3 +36,7 @@
         <button type="button" class="btn btn-lg btn-link">@Localizer["Back"]</button>
     </a>      
 </div>
+@section Scripts {
+   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

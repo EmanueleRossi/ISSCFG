@@ -17,15 +17,13 @@ namespace ISSCFG.Controllers
     {
         private readonly ILogger<HomeController> Logger;  
         private readonly IActionContextAccessor Accessor;
-        private readonly IIpGeoLocation Locator;
         private readonly IUserInputService UserInputService;
         private readonly IConfigurator Configurator;
         
-        public CfgController(ILogger<HomeController> logger, IActionContextAccessor accessor, IIpGeoLocation locator, IUserInputService userInputService, IConfigurator configurator)
+        public CfgController(ILogger<HomeController> logger, IActionContextAccessor accessor, IUserInputService userInputService, IConfigurator configurator)
         {
             Logger = logger;
             Accessor = accessor;
-            Locator = locator;
             UserInputService = userInputService;
             Configurator = configurator;            
         }
@@ -71,6 +69,10 @@ namespace ISSCFG.Controllers
         
         public async Task<IActionResult> CompleteContacts(string name, string company, string mail, string phone, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Contacts", UserInputService.GetUserInput(id));
+            }
             UserInputService.setContacts(name, company, mail, phone, id);
             UserInputViewModel viewModel = UserInputService.GetUserInput(id); 
             Logger.LogDebug($"[CompleteContacts] viewModel=|{viewModel.ToString()}|");                 

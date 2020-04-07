@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations;
 using ISSCFG.Models.Entities;
 
 namespace ISSCFG.Models.ViewModels
@@ -10,6 +12,7 @@ namespace ISSCFG.Models.ViewModels
         public string Step03 { get; set; }  
         public string Name { get; set; }
         public string Company { get; set; }
+        [Required]
         public string Mail { get; set; }
         public string Phone { get; set; }
 
@@ -21,6 +24,7 @@ namespace ISSCFG.Models.ViewModels
             Step03 = input.Step03,
             Name = input.Name,
             Company = input.Company,
+            Mail = input.Mail,
             Phone = input.Phone
         };        
         
