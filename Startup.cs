@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace ISSCFG
 {
@@ -60,7 +61,23 @@ namespace ISSCFG
             services.AddTransient<IConfigurator, MeetingRoomConfigurator>();
             services.AddTransient<IIpGeoLocation, IpGeoLocation>();
 
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("AppConnectionString")));         
+            services.AddDbContextPool<AppDbContext>(optionsBuilder => 
+            {
+                optionsBuilder.UseNpgsql(Configuration.GetConnectionString("AppConnectionString"));         
+                var extension = optionsBuilder.Options.FindExtension<NpgsqlOptionsExtension>();
+                if (extension != null) {
+                    optionsBuilder.UseNpgsql(extension.ConnectionString);                
+                } else {
+                    string extensionString = "{";
+                    foreach (var e in optionsBuilder.Options.Extensions)
+                        extensionString += e.GetType() + "},";
+                        extensionString += "}";
+                    throw new ArgumentException($@"
+                        In Microsoft.EntityFrameworkCore.DbContextOptionsBuilder can't find 
+                        Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.NpgsqlOptionsExtension extension
+                        Available extensions are: {extensionString} NpgsqlOptionsExtension");     
+                }
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime, ILoggerFactory loggerFactory)

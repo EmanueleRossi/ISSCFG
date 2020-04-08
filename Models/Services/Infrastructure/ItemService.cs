@@ -17,6 +17,7 @@ namespace ISSCFG.Models.Services.Infrastructure
         async Task<ItemViewModel> IItemService.GetItemAsync(string code)
         {
             IQueryable<ItemViewModel> queryLinq = dbContext.Items
+                .AsNoTracking()
                 .Where(item => string.Equals(item.Code, code))                
                 .Select(item => ItemViewModel.FromEntity(item)); 
             
