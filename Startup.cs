@@ -63,7 +63,7 @@ namespace ISSCFG
 
             services.AddDbContextPool<AppDbContext>(optionsBuilder => 
             {
-                optionsBuilder.UseNpgsql(Configuration.GetConnectionString("AppConnectionString"));         
+                optionsBuilder.UseNpgsql(Configuration.GetConnectionString("AppConnectionString"));
                 var extension = optionsBuilder.Options.FindExtension<NpgsqlOptionsExtension>();
                 if (extension != null) {
                     optionsBuilder.UseNpgsql(extension.ConnectionString);                

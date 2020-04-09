@@ -8,11 +8,16 @@ Log-in to an image
 ## Cloud SQL Proxy
 <code>c:/dev/tools/Google/cloud_sql_proxy_x64.exe -instances=isscfg:europe-west1:isscfg=tcp:5432 -credential_file=c:/dev/tools/Google/isscfg-ff581b9dfb85.json</code>
 
-## DATABASE
+## RDBMS Connection
 ### CLI ef tool install...
 <code>dotnet tool install --global dotnet-ef</code>
 
 <code>dotnet add package Microsoft.EntityFrameworkCore.Design</code>
+
+### User Preparation
+<code>CREATE USER isscfg_prd WITH PASSWORD 'password';</code>
+
+<code>ALTER USER isscfg_prd WITH CREATEDB;</code>
 
 ### Initial DB Creation
 <code>$Env:ASPNETCORE_ENVIRONMENT = "Development"</code>
