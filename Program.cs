@@ -2,7 +2,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace ISSCFG
 {
@@ -27,13 +27,15 @@ namespace ISSCFG
                     }
                     config.AddEnvironmentVariables();
                 })
-                .ConfigureLogging((hostingContext, logging) =>
+                .UseSerilog((hostBuilderContext, loggerConfiguration) => 
                 {
-                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                })
+                    loggerConfiguration.ReadFrom.Configuration(hostBuilderContext.Configuration);
+                })                 
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });                
-                }
+                    webBuilder.UseStartup<Startup>();                    
+                });
+    
+    }           
+            
 }
