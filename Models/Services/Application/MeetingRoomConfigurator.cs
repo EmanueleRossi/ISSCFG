@@ -10,13 +10,11 @@ namespace ISSCFG.Models.Services.Application
 {
     public class MeetingRoomConfigurator : IConfigurator
     {
-        private readonly ILogger<MeetingRoomConfigurator> Logger; 
         private readonly IUserInputService UserInputService;          
         private readonly IItemService ItemService;        
 
-        public MeetingRoomConfigurator(ILogger<MeetingRoomConfigurator> logger, IUserInputService userInputService, IItemService itemService)
+        public MeetingRoomConfigurator(IUserInputService userInputService, IItemService itemService)
         {
-            Logger = logger;
             UserInputService = userInputService;
             ItemService = itemService;
         }

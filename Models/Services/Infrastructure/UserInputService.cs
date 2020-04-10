@@ -26,7 +26,7 @@ namespace ISSCFG
             UserInput newUserInput = new UserInput();
             newUserInput.InsertDate = DateTime.UtcNow;
             EntityEntry<UserInput> added = DbContext.UserInputs.Add(newUserInput);
-            // TODO questo è il primo punto in cui cerca di connettersi al DB... gestire l'eccezione!            
+            // FIXME questo è il primo punto in cui cerca di connettersi al DB... gestire l'eccezione!            
             DbContext.SaveChanges();
             return added.Entity.Id;
         }      

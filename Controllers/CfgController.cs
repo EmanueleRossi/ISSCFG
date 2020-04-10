@@ -30,40 +30,40 @@ namespace ISSCFG.Controllers
                 
         public IActionResult ToStep01(int id)
         {
-            Logger.LogDebug($"Received [id]=|{id}|");                 
+            Logger.LogDebug("Received [id]=|{id}|", id);                 
             if (id == 0) id = UserInputService.newUserInput();
-            Logger.LogDebug($"ToStep01 [id]=|{id}|");
+            Logger.LogDebug("ToStep01 [id]=|{id}|", id);
             UserInputService.setRemoteIpAddress(Accessor.ActionContext.HttpContext.Connection.RemoteIpAddress, id);                                         
             return View("Step01", UserInputService.GetUserInput(id));
         }
         public IActionResult CompleteStep01(string step01, int id)
         {
             UserInputService.setStep01(step01, id);
-            Logger.LogDebug($"[id=|{id}|] -> step01=|{step01}|");           
+            Logger.LogDebug("[id=|{id}|] -> step01=|{step01}|", id, step01);           
             return View("Step02", UserInputService.GetUserInput(id));
         }
         
         public IActionResult ToStep02(int id)
         {
-            Logger.LogDebug($"ToStep02 [id]=|{id}|");                 
+            Logger.LogDebug("ToStep02 [id]=|{id}|", id);                 
             return View("Step02", UserInputService.GetUserInput(id));
         }                
         public IActionResult CompleteStep02(string step02, int id)
         {
             UserInputService.setStep02(step02, id);
-            Logger.LogDebug($"[id=|{id}|] -> step02=|{step02}|");           
+            Logger.LogDebug("[id=|{id}|] -> step02=|{step02}|", id, step02);           
             return View("Step03", UserInputService.GetUserInput(id));
         }        
         
         public IActionResult ToStep03(int id)
         {
-            Logger.LogDebug($"ToStep03 [id]=|{id}|");                 
+            Logger.LogDebug("ToStep03 [id]=|{id}|", id);                 
             return View("Step03", UserInputService.GetUserInput(id));
         }        
         public IActionResult CompleteStep03(string step03, int id)
         {
             UserInputService.setStep03(step03, id);
-            Logger.LogDebug($"[id=|{id}|] -> step03=|{step03}|");           
+            Logger.LogDebug("[id=|{id}|] -> step03=|{step03}|", id, step03);           
             return View("Contacts", UserInputService.GetUserInput(id));
         }           
         
@@ -75,7 +75,7 @@ namespace ISSCFG.Controllers
             }
             UserInputService.setContacts(name, company, mail, phone, id);
             UserInputViewModel viewModel = UserInputService.GetUserInput(id); 
-            Logger.LogDebug($"[CompleteContacts] viewModel=|{viewModel.ToString()}|");                 
+            Logger.LogDebug("[CompleteContacts] viewModel=|{viewModel}|", viewModel.ToString());                 
             List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
             return View("Basket", new BasketViewModel(configuration));
         } 

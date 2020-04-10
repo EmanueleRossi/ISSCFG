@@ -7,10 +7,8 @@ namespace ISSCFG.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> Logger;  
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            Logger = logger;
         }
 
         public IActionResult Index()
