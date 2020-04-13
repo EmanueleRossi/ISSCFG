@@ -92,7 +92,7 @@ namespace ISSCFG.Models.Services.Infrastructure
                     Id = -11,
                     Producer = "Microsoft",
                     Description = "Meeting Room License",
-                    ImagePath = "~/img/MS-TRL.jpeg",
+                    ImagePath = "~/img/Products/MS-TRL.jpeg",
                     Url = "https://office365itpros.com/2018/12/17/teams-device-meeting-license/"
                 });                                      
             });
