@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ISSCFG.Models;
 using ISSCFG.Models.Services;
 using ISSCFG.Models.ViewModels;
 using ISSCFG.Models.Services.Application;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using ISSCFG.Models.Services.API;
 
 namespace ISSCFG.Controllers
 {
@@ -30,7 +26,7 @@ namespace ISSCFG.Controllers
                 
         public IActionResult ToStep01(int id)
         {
-            Logger.LogDebug("Received [id]=|{id}|", id);                 
+            Logger.LogDebug("Received [id]=|{id}|", id);
             if (id == 0) id = UserInputService.newUserInput();
             Logger.LogDebug("ToStep01 [id]=|{id}|", id);
             UserInputService.setRemoteIpAddress(Accessor.ActionContext.HttpContext.Connection.RemoteIpAddress, id);                                         
@@ -79,11 +75,5 @@ namespace ISSCFG.Controllers
             List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
             return View("Basket", new BasketViewModel(configuration));
         } 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
