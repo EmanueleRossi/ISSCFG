@@ -13,7 +13,7 @@ namespace ISSCFG.Models.Services.Application
         private readonly IUserInputService UserInputService;          
         private readonly IItemService ItemService;        
 
-        public MeetingRoomConfigurator(IUserInputService userInputService, IItemService itemService)
+        public MeetingRoomConfigurator(IUserInputService userInputService, IItemServiceMemoryCached itemService)
         {
             UserInputService = userInputService;
             ItemService = itemService;

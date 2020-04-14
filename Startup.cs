@@ -57,6 +57,7 @@ namespace ISSCFG
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IUserInputService, UserInputService>();
             services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IItemServiceMemoryCached, ItemServiceMemoryCached>();
             services.AddTransient<IConfigurator, MeetingRoomConfigurator>();
             services.AddTransient<IIpGeoLocation, IpGeoLocation>();
 
