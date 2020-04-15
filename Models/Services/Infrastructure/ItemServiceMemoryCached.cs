@@ -25,8 +25,10 @@ namespace ISSCFG.Models.Services.Infrastructure
         {
             return await MemoryCache.GetOrCreateAsync($"Item-{code}", cacheEntry =>
             {
-                int memoryCacheAbsoluteExpirationMinutes = Configuration.GetValue<int>("MemoryCacheAbsoluteExpirationMinutes", 2);
+                int memoryCacheAbsoluteExpirationMinutes = Configuration.GetSection("MemoryCache").GetValue<int>("MemoryCacheAbsoluteExpirationMinutes", 2);
+                int memoryCacheObjectSize = Configuration.GetSection("MemoryCache").GetValue<int>("Size", 1);                                
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(memoryCacheAbsoluteExpirationMinutes));
+                cacheEntry.SetSize(memoryCacheObjectSize);
                 return ItemService.GetItemAsync(code);
              });
         }
