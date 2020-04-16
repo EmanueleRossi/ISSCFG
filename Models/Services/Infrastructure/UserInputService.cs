@@ -42,6 +42,13 @@ namespace ISSCFG
             DbContext.SaveChanges();
         }
 
+        public void setAcceptedLanguages(string acceptedLanguages, int id)
+        {
+            UserInput found = DbContext.UserInputs.Single(input => input.Id == id);            
+            found.AcceptedLanguages = acceptedLanguages;
+            DbContext.SaveChanges();
+        }        
+
         public void setStep01(string step01, int id) 
         {                    
             UserInput found = DbContext.UserInputs.Single(input => input.Id == id);            

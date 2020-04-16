@@ -24,12 +24,15 @@ namespace ISSCFG.Controllers
             Configurator = configurator;            
         }
                 
-        public IActionResult ToStep01(int id)
+        public IActionResult ToStep01([FromHeader(Name = "Accept-Language")] string lang, int id = 0)
         {
             Logger.LogDebug("Received [id]=|{id}|", id);
+            Logger.LogDebug("Received [lang]=|{lang}|", lang);
             if (id == 0) id = UserInputService.newUserInput();
             Logger.LogDebug("ToStep01 [id]=|{id}|", id);
+            UserInputService.setAcceptedLanguages(lang, id);
             UserInputService.setRemoteIpAddress(Accessor.ActionContext.HttpContext.Connection.RemoteIpAddress, id);                                         
+
             return View("Step01", UserInputService.GetUserInput(id));
         }
         public IActionResult CompleteStep01(string step01, int id)

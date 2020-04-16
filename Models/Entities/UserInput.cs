@@ -13,6 +13,7 @@ namespace ISSCFG.Models.Entities
         public string Mail { get; set; }
         public string Phone { get; set; }
         public DateTime InsertDate { get; set; }
+        public string AcceptedLanguages { get; set; }        
         public string RemoteIpAddress { get; set; }        
         public string Coordinates { get; set; }
         public string Country { get; set; }
