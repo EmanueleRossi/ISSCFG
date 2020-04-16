@@ -1,14 +1,13 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using ISSCFG.Models;
 using Microsoft.AspNetCore.Diagnostics;
-using System;
 
 namespace ISSCFG.Controllers
 {
     public class HomeController : Controller
     {
+        [ResponseCache(Duration = 600, Location = ResponseCacheLocation.Any)]
         public IActionResult Index()
         {
             return View();
