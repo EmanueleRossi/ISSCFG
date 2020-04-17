@@ -3,6 +3,7 @@ using System.Net;
 using IPGeolocation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+
 namespace ISSCFG.Models.Services.API
 {
     public class IpGeoLocation : IIpGeoLocation

@@ -1,29 +1,32 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ISSCFG.Models.Enums;
 using ISSCFG.Models.Services.Infrastructure;
 using ISSCFG.Models.ViewModels;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace ISSCFG.Models.Services.Application
 {
     public class MeetingRoomConfigurator : IConfigurator
     {
         private readonly IUserInputService UserInputService;          
-        private readonly IItemService ItemService;        
+        private readonly IItemService ItemService;    
+        private readonly int PerPageLimit;    
 
-        public MeetingRoomConfigurator(IUserInputService userInputService, IItemServiceMemoryCached itemService)
+        public MeetingRoomConfigurator(IConfiguration configuration, IUserInputService userInputService, IItemServiceMemoryCached itemService)
         {
             UserInputService = userInputService;
             ItemService = itemService;
+            PerPageLimit = configuration.GetSection("UI").GetValue<int>("PerPageLimit", 5);
         }
       
-        public async Task<List<ItemViewModel>> ComputeConfiguration(UserInputViewModel userInput) 
+        public async Task<BasketViewModel> ComputeConfiguration(UserInputViewModel userInput, int page) 
         {
             List<ItemViewModel> basket = new List<ItemViewModel>();
             if (userInput == null || userInput.Id == 0) throw new ArgumentException($"Request for configuration with null input parameters... why?");
-
+            
             if (Enum.TryParse(userInput.Step01, out Step01 step01userInput)) 
             {
                 switch (step01userInput)
@@ -86,7 +89,20 @@ namespace ISSCFG.Models.Services.Application
                 basket.Add(await ItemService.GetItemAsync("ACS_REMOTE-SUPPORT"));
             }
 
-            return basket;
+            BasketViewModel response = new BasketViewModel();
+            response.UserInputId = userInput.Id;
+            response.PerPageLimit = PerPageLimit;
+            response.CurrentPage = page;
+            response.TotalCount = basket.Count();
+
+            page = Math.Max(1, page);
+            int offset = (page - 1) * PerPageLimit;
+            basket.Sort((i, j) => i.Code.CompareTo(j.Code));
+            basket = basket.Skip(offset).Take(PerPageLimit).ToList();                
+            
+            response.setItems(basket);            
+
+            return response;
         }
     }
 }

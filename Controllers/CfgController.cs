@@ -68,15 +68,20 @@ namespace ISSCFG.Controllers
         
         public async Task<IActionResult> CompleteContacts(string name, string company, string mail, string phone, int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("Contacts", UserInputService.GetUserInput(id));
-            }
+            if (!ModelState.IsValid) return View("Contacts", UserInputService.GetUserInput(id));            
             UserInputService.setContacts(name, company, mail, phone, id);
             UserInputViewModel viewModel = UserInputService.GetUserInput(id); 
             Logger.LogDebug("[CompleteContacts] viewModel=|{viewModel}|", viewModel.ToString());                 
-            List<ItemViewModel> configuration = await Configurator.ComputeConfiguration(viewModel);                    
-            return View("Basket", new BasketViewModel(configuration));
+            BasketViewModel basketViewModel = await Configurator.ComputeConfiguration(viewModel, 1);  
+            return View("Basket", basketViewModel);
         } 
+
+        public async Task<IActionResult> Basket(int page, int userInputId)
+        {
+            Logger.LogDebug("[userInputId=|{userInputId}|] -> page=|{page}|", userInputId, page);  
+            UserInputViewModel viewModel = UserInputService.GetUserInput(userInputId);   
+            BasketViewModel basketViewModel = await Configurator.ComputeConfiguration(viewModel, page);  
+            return View("Basket", basketViewModel);
+        }
     }
 }
