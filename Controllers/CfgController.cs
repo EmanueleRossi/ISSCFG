@@ -27,7 +27,7 @@ namespace ISSCFG.Controllers
         public IActionResult ToStep01([FromHeader(Name = "Accept-Language")] string lang, int id = 0)
         {
             Logger.LogDebug("Received [id]=|{id}|", id);
-            Logger.LogDebug("Received [lang]=|{lang}|", lang);
+            Logger.LogWarning("Received [lang]=|{lang}|", lang);
             if (id == 0) id = UserInputService.newUserInput();
             Logger.LogDebug("ToStep01 [id]=|{id}|", id);
             UserInputService.setAcceptedLanguages(lang, id);
