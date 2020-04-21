@@ -22,7 +22,7 @@ namespace ISSCFG.Models.Services.Application
             PerPageLimit = configuration.GetSection("UI").GetValue<int>("PerPageLimit", 5);
         }
       
-        public async Task<BasketViewModel> ComputeConfiguration(UserInputViewModel userInput, int page) 
+        public async Task<BasketViewModel> ComputeConfiguration(MeetingRoomUserInputViewModel userInput, int page) 
         {
             List<ItemViewModel> basket = new List<ItemViewModel>();
             if (userInput == null || userInput.Id == 0) throw new ArgumentException($"Request for configuration with null input parameters... why?");

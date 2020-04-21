@@ -4,7 +4,7 @@ using ISSCFG.Models.Entities;
 
 namespace ISSCFG.Models.ViewModels
 {
-    public class UserInputViewModel
+    public class MeetingRoomUserInputViewModel
     {
         public int Id { get; set; }
         public string Step01 { get; set; }
@@ -16,7 +16,7 @@ namespace ISSCFG.Models.ViewModels
         public string Mail { get; set; }
         public string Phone { get; set; }
 
-        public static UserInputViewModel FromEntity(UserInput input) => new UserInputViewModel
+        public static MeetingRoomUserInputViewModel FromEntity(UserInput input) => new MeetingRoomUserInputViewModel
         {
             Id = input.Id,
             Step01 = input.Step01,

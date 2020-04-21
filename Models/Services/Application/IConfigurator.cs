@@ -6,6 +6,6 @@ namespace ISSCFG.Models.Services.Application
 {
     public interface IConfigurator
     {
-        Task<BasketViewModel> ComputeConfiguration(UserInputViewModel userInput, int page);
+        Task<BasketViewModel> ComputeConfiguration(MeetingRoomUserInputViewModel userInput, int page);
     }
 }

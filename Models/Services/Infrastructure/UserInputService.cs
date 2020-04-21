@@ -80,11 +80,11 @@ namespace ISSCFG
             DbContext.SaveChanges();
         } 
         
-        public UserInputViewModel GetUserInput(int id)
+        public MeetingRoomUserInputViewModel GetUserInput(int id)
         {
-            IQueryable<UserInputViewModel> queryLinq = DbContext.UserInputs
+            IQueryable<MeetingRoomUserInputViewModel> queryLinq = DbContext.UserInputs
                 .Where(input => input.Id == id)                
-                .Select(input => UserInputViewModel.FromEntity(input)); 
+                .Select(input => MeetingRoomUserInputViewModel.FromEntity(input)); 
             
             return queryLinq.Single();
         }

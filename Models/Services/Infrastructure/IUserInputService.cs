@@ -12,6 +12,6 @@ namespace ISSCFG.Models.Services
         void setStep02(string step02, int id);    
         void setStep03(string step03, int id);  
         void setContacts(string name, string company, string mail, string phone, int id);              
-        UserInputViewModel GetUserInput(int id);
+        MeetingRoomUserInputViewModel GetUserInput(int id);
     }
 }
